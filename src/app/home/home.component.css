@@ -1,0 +1,46 @@
+.pointer {
+    width: 200px;
+    height: 40px;
+    position: relative;
+    background: red;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .pointer:before {
+    content: "";
+    position: absolute;
+    right: -20px;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 20px solid red;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+  }
+
+
+  .card {
+    border-radius: 5px;
+    padding: 2px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.10);
+    transition: all 0.2s;
+  }
+ 
+  .card_title {
+      
+      color: #34495E;
+  }
+
+  
+  .card-2 {
+    background: radial-gradient(#fbc1cc, #fa99b2);
+  }
+  
+/*   
+  @media (max-width: 1600px) {
+    .cards {
+      justify-content: center;
+    }
+  } */
+  

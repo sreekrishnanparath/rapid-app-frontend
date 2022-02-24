@@ -1,0 +1,60 @@
+<div class="col-lg-12 ">
+  <div class="row ">
+    
+    <div class="input-group mb-3 col-6" >
+      <span class="input-group-text bg-info text-white" for="customer" >Search Module</span>
+      <input type="text"  placeholder="Search Module" class="form-control"  >
+    </div>
+
+
+ 
+    <div class="col-4" >
+      <div class="input-group mb-3">
+        <label class="input-group-text bg-info text-white" for="status">Select Status</label>
+        <select name="status" id title="Choose..." placeholder="Select Status" class="form-control form-select" [(ngModel)]="taskType" >
+          <option selected>All</option>
+          <option Value="New">New</option>
+          <!-- <option Value="Progress">Progress</option>
+          <option Value="Resolved">Resolved</option>
+          <option Value="Closed">Closed</option> -->
+        </select>
+      </div>
+    </div>
+
+
+
+  <div class="mb-3 col-2 ">
+    <button (click)=refreshTasks() class="btn btn-danger float-right "><i class="fa fa-refresh"></i></button>
+  </div>
+    </div>
+   
+      <table class="table table-bordered  table-sm">
+        <thead >
+          <tr  style="background-color: #1ABC9C;color: white;">
+            <th>Module Id</th>
+            <th >Module Desc</th>
+            <th >Status</th>
+            <!-- <th >Created By</th> -->
+            <th >Created Time</th>
+            <th >Active</th>
+          </tr>
+        </thead>
+        <tbody class="table-Info">  
+                
+            <div *ngIf = "moduleData.length==0">
+              <label >No {{moduleData}} module data Found!</label>
+            </div>
+            <tr *ngFor="let module of moduleData "  >
+            <td class="topis">{{ module.moduleId }}</td>
+            <td class="topis"> {{ module.moduleDesc }}</td>
+            <td class="topis" > {{ module.status }}</td>
+            <!-- <td class="topis"> {{ task.createdBy }}</td> -->
+            <td class="topis"> {{ module.createdDate }}</td>
+            <td class="topis"> {{ module.isActive }}</td>
+            <td class="topis" >       
+              <button type="button" title="View/update Module" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> Open</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>

@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+@import url(https://www.w3schools.com/w3css/4/w3.css);
+@import url(https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css);
+@import url(https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+
+
+body {
+    height: 100%;
+  }
+ten {
+    width: 10%
+  }
+
+
+
+ .topis { 
+  overflow: hidden;
+  height: 10px;
+  white-space: nowrap;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    height: 100px;
+   
+}
+
+.statuscol{
+  padding: 22dp;
+}
+
+.nounderline {
+  text-decoration: none ;
+  text-align: end;
+  
+}

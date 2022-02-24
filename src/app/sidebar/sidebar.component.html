@@ -1,0 +1,17 @@
+<div class="w3-sidebar w3-dark-grey w3-bar-block " >
+  <!-- <a routerLink="/Userlist" class="w3-bar-item w3-button">User</a> -->
+  <!-- <a href="#" class="w3-bar-item w3-button">Role</a>
+  <a href="#" class="w3-bar-item w3-button">Module</a> -->
+  
+  <ul class="list-unstyled">
+    <li *ngFor = "let menu  of menuList">
+      <a routerLink="/{{menu.menuId}}" class="w3-bar-item w3-button text-decoration-none"
+       >
+       <i class="{{menu.menuIcon}}"></i>  {{menu.menuDesc}}
+      
+    </a>
+
+  </li>
+ </ul>
+  
+</div>
