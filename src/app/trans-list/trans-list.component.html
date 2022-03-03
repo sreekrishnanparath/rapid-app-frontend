@@ -1,40 +1,63 @@
-<div class="col-lg-12 ">
-
-
+<div class="col">
+  <div class=" row">
+      <div class="card col-4" >
+        <div class="card-body"><h5 class="card-title">Chart 1</h5></div>
+        <div >
+          <select name="status"  title="Choose..." placeholder="Select Status" class="form-control form-select" [(ngModel)]="chartFieldX" (ngModelChange)="updateBarChart()" >
+            <option *ngFor="let item of barChartLabelsFull" [ngValue]="item">{{item}}</option>
+            <!-- <option selected>All</option>
+            <option Value="New">New</option> -->
+          </select>
+          <select name="status"  title="Choose..." placeholder="Select Status" class="form-control form-select" [(ngModel)]="chartFieldY" (ngModelChange)="updateBarChart()" >
+            <option *ngFor="let item of barChartLabelsFull" [ngValue]="item">{{item}}</option>
+            <!-- <option selected>All</option>
+            <option Value="New">New</option> -->
+          </select>
+        </div>
+      <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+      </canvas>
+    </div>
+    <div class="card col-lg-4">
+      <div class="card-body"><h5 class="card-title">Chart 2</h5></div>
+      <div >
+        <select name="status"  title="Choose..." placeholder="Select Status" class="form-control form-select" [(ngModel)]="chartFieldX1" (ngModelChange)="updateChart2()" >
+          <option *ngFor="let item of barChartLabelsFull" [ngValue]="item">{{item}}</option>
+          <!-- <option selected>All</option>
+          <option Value="New">New</option> -->
+        </select>       
+      </div>
+      <canvas baseChart
+                  [data]="doughnutChartData"
+                  [labels]="doughnutChartLabels"
+                  [chartType]="doughnutChartType"></canvas>
+    </div>
+    <div class="card col-sm-4">
+      <!-- <canvas baseChart
+              [datasets]="radarChartData"
+              [labels]="radarChartLabels"
+              [chartType]="radarChartType"></canvas> -->
+              <canvas baseChart
+              [data]="polarAreaChartData"
+              [labels]="polarAreaChartLabels"
+              [legend]="polarAreaLegend"
+              [chartType]="polarAreaChartType">
+            </canvas>
+    </div>
   </div>
 
+  </div>
+ 
+
+ 
   <div class="col-lg-12 " id="showData" onload="CreateTableFromJSON()">
     <div class="row ">
       <div class="mb-3 col-2 ">
         <button (click)=refreshTasks() class="btn btn-danger float-right "><i class="fa fa-refresh"></i></button>
       </div>
       </div>
-     
-        <!-- <table class="table table-bordered  table-sm">
-          <thead >
-    
-            <tr  style="background-color: #1ABC9C;color: white;" *ngFor="let ant of data | keyvalue">
-              {{(ant.value) | json}}
-                <ng-container *ngFor="let prop of ant.value | keyvalue">
-                    <th>{{ prop.key }}</th>
-                  </ng-container>
-            </tr>
-          </thead>
-          <tbody class="table-Info">  
-          
-            <tr *ngFor="let ant of data | keyvalue" >
-                <ng-container *ngFor="let prop of ant.value | keyvalue">
-                    <td class="topis">{{ prop.value }}</td>
-                  
-                 
-              </ng-container>
-           
-            
-           
-          </tr>
-        </tbody>
-        </table> -->
     </div>
-    <script>
-     
-  </script>

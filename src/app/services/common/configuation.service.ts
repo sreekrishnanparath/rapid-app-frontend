@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Attribute } from 'src/app/dto/attribute';
 import { Module } from 'src/app/dto/module';
 import { User } from 'src/app/dto/user';
 
@@ -35,6 +36,14 @@ export class ConfiguationService {
 
   getAllModuleList() {   
     return this.http.post<Module[]>('http://localhost:8082/rapidapp/module/company/1',
+        JSON.stringify({
+          "not_close":"not_close"
+      })
+    );
+  };
+
+  getModuleAttributes(moduleId : number) {   
+    return this.http.post<Attribute[]>('http://localhost:8082/rapidapp/attr/module/'+moduleId,
         JSON.stringify({
           "not_close":"not_close"
       })

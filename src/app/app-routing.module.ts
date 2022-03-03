@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AttributeMasterComponent } from './attribute-master/attribute-master.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ModuleComponent } from './module/module.component';
@@ -13,7 +14,8 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       {path:'module',component:ModuleComponent},
-      {path:'report',component:TransListComponent}
+      {path:'report',component:TransListComponent},
+      {path:'attribute',component:AttributeMasterComponent}
     ]
   }
 
