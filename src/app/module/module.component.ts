@@ -10,7 +10,9 @@ import { ConfiguationService } from '../services/common/configuation.service';
 export class ModuleComponent implements OnInit {
 
   moduleData : Module [] = []
-
+  newModule : Module = new Module (0,1,"","",false,"",0);
+  popUpMsg =null;
+  searchText : string ="";
   constructor(private configService : ConfiguationService) { }
 
   ngOnInit() {
@@ -23,7 +25,23 @@ export class ModuleComponent implements OnInit {
         response=> {this.moduleData =  response 
         }
       );
+      console.log( "moduleData  : "+this.moduleData);
     }
-  
+  createModule(){
+    // console.log(this.newModule);
+    this.configService.createModule(this.newModule).subscribe(
+      success=>{
+        this.popUpMsg = "Module Created";
+        
+      },
+      error=>{
+        this.popUpMsg = "Unable to create Module";
+
+      }
+      
+      
+    );
+    
+  }
 
 }

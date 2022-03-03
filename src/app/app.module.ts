@@ -13,6 +13,8 @@ import { TransListComponent } from './trans-list/trans-list.component';
 import { RegisterComponent } from './register/register.component';
 import { NavLinkComponent } from './nav-link/nav-link.component';
 import { ModuleComponent } from './module/module.component';
+import { CompanyComponent } from './company/company.component';
+import { ModuleFilterPipe } from './module-filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +27,8 @@ import { ModuleComponent } from './module/module.component';
     RegisterComponent,
     NavLinkComponent,
     ModuleComponent,
+    CompanyComponent,
+    ModuleFilterPipe,
   ],
   imports: [
     BrowserModule,
