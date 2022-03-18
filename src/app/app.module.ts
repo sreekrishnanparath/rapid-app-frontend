@@ -15,6 +15,12 @@ import { NavLinkComponent } from './nav-link/nav-link.component';
 import { ModuleComponent } from './module/module.component';
 import { CompanyComponent } from './company/company.component';
 import { ModuleFilterPipe } from './module-filter.pipe';
+import { AttributeMasterComponent } from './attribute-master/attribute-master.component';
+import { AttributeDetailsComponent } from './attribute-details/attribute-details.component';
+import { AttributePageComponent } from './attribute-page/attribute-page.component';
+import { ChartsModule } from 'ng2-charts';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,13 +35,17 @@ import { ModuleFilterPipe } from './module-filter.pipe';
     ModuleComponent,
     CompanyComponent,
     ModuleFilterPipe,
+    AttributeMasterComponent,
+    AttributeDetailsComponent,
+    AttributePageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,96 @@
+<div class="col-lg-12 ">
+  <div class="row">
+  <div class="col-lg-4">
+    <ol class = "list-group">
+      <li class = "list-group-item list-group-item-action" *ngFor="let module of moduleData"
+      (click)="moduleClicked(module)">
+          {{ module.moduleDesc}}
+      </li>
+    
+    </ol>
+  </div>
+  <div class="col-lg-8 " >
+    <div class="row ">
+      
+      <div class="input-group mb-3 col-6" >
+        <span class="input-group-text bg-info text-white" for="customer" >Search Attribute</span>
+        <input type="text"  placeholder="Search Attribute" class="form-control"  >
+      </div>
+  
+  
+   
+      <!-- <div class="col-4" >
+        <div class="input-group mb-3">
+          <label class="input-group-text bg-info text-white" for="status">Select Status</label>
+          <select name="status" id title="Choose..." placeholder="Select Status" class="form-control form-select" [(ngModel)]="taskType" >
+            <option selected>All</option>
+            <option Value="New">New</option>
+          
+          </select>
+        </div>
+      </div> -->
+  
+      <div class="mb-3 col-2 ">
+        <button (click)=add() class="btn btn-success float-right "><i class="fa fa-plus"></i>Add</button>
+      </div>
+      
+    <div class="mb-3 col-2 ">
+      <button (click)=refreshTasks() class="btn btn-danger float-right "><i class="fa fa-refresh"></i></button>
+    </div>
+      </div>
+     
+        <table class="table table-bordered  table-sm">
+          <thead >
+            <tr  style="background-color: #1ABC9C;color: white;">
+              <th>Id</th>
+              <th >Description</th>
+              <th >Status</th>
+              <!-- <th >Created By</th> -->
+              <th >Created Time</th>
+              <th >Active</th>
+            </tr>
+          </thead>
+          <tbody class="table-Info">  
+                  
+              <div *ngIf = "attributeData.length==0">
+                <label >No attribute data Found!</label>
+              </div>
+              <tr *ngFor="let attribute of attributeData "  >
+              <td class="topis">{{ attribute.attributeId }}</td>
+              <td class="topis"> {{ attribute.attrDesc }}</td>
+              <td class="topis" > {{ attribute.status }}</td>
+              <!-- <td class="topis"> {{ task.createdBy }}</td> -->
+              <td class="topis"> {{ attribute.createdDate }}</td>
+              <td class="topis"> {{ attribute.isActive }}</td>
+              <td class="topis" >       
+                <button type="button" title="View/update Module" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> Open</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
