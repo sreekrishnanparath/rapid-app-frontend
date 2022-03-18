@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Attribute } from 'src/app/dto/attribute';
+import { Company } from 'src/app/dto/company';
+import { Attribute } from 'src/app/dto/attribute'; 
 import { Module } from 'src/app/dto/module';
 import { User } from 'src/app/dto/user';
 
@@ -41,6 +42,19 @@ export class ConfiguationService {
       })
     );
   };
+ 
+  createModule(module : Module){
+    return this.http.post('http://localhost:8082/rapidapp/module/create',JSON.stringify(module),this.headerData);
+  }
+  getAllCompanyList() {   
+    return this.http.get<Company[]>('http://localhost:8082/rapidapp/company/companies')
+
+  };
+  createCompany(company : Company)
+  {
+    return this.http.post('http://localhost:8082/rapidapp/company/create',JSON.stringify(company),this.headerData);
+  }
+
 
   getModuleAttributes(moduleId : number) {   
     return this.http.post<Attribute[]>('http://localhost:8082/rapidapp/attr/module/'+moduleId,
@@ -49,5 +63,5 @@ export class ConfiguationService {
       })
     );
   };
-  
+
 }

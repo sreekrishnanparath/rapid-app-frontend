@@ -10,8 +10,8 @@ export class MenuService {
   menuList : menu[] = []; 
 
   constructor(private http : HttpClient) { 
-    
     this.menuList.push(new menu("home/module","Module","Module","fa fa-check-square-o"));
+     this.menuList.push(new menu("home/report","Report","Report","fa fa-user"));
     this.menuList.push(new menu("home/attribute","Attribute","Attribute","fa fa-clock-o"));
     this.menuList.push(new menu("home/report","Report","Report","fa fa-user"));
     //this.menuList.push(new menu("tasks","View Issues","customer","fa fa-eye"));
