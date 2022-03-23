@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
   }
   createUser(){
     if(this.validateForm(this.user)){
-      //this.UserService.createUser(this.user);
+      this.UserService.createUser(this.user);
       this.errorMessage={
         password:'',
         email:''

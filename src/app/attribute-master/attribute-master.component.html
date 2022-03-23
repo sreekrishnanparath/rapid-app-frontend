@@ -1,25 +1,25 @@
 <div class="col-lg-12 ">
   <div class="row">
-  <div class="col-lg-4">
-    <ol class = "list-group">
-      <li class = "list-group-item list-group-item-action" *ngFor="let module of moduleData"
-      (click)="moduleClicked(module)">
+    <div class="col-lg-2">
+      <ol class="list-group">
+        <li class="list-group-item list-group-item-action" *ngFor="let module of moduleData"
+          (click)="moduleClicked(module)">
           {{ module.moduleDesc}}
-      </li>
-    
-    </ol>
-  </div>
-  <div class="col-lg-8 " >
-    <div class="row ">
-      
-      <div class="input-group mb-3 col-6" >
-        <span class="input-group-text bg-info text-white" for="customer" >Search Attribute</span>
-        <input type="text"  placeholder="Search Attribute" class="form-control"  >
-      </div>
-  
-  
-   
-      <!-- <div class="col-4" >
+        </li>
+
+      </ol>
+    </div>
+    <div class="col-lg-10 ">
+      <div class="row ">
+
+        <div class="input-group mb-3 col-6">
+          <span class="input-group-text bg-info text-white" for="customer">Search Attribute</span>
+          <input type="text" placeholder="Search Attribute" class="form-control">
+        </div>
+
+
+
+        <!-- <div class="col-4" >
         <div class="input-group mb-3">
           <label class="input-group-text bg-info text-white" for="status">Select Status</label>
           <select name="status" id title="Choose..." placeholder="Select Status" class="form-control form-select" [(ngModel)]="taskType" >
@@ -29,45 +29,50 @@
           </select>
         </div>
       </div> -->
-  
-      <div class="mb-3 col-2 ">
-        <button (click)=add() class="btn btn-success float-right "><i class="fa fa-plus"></i>Add</button>
+
+        <div class="mb-3 col-2 ">
+          <button (click)=add() data-toggle="modal" data-target="#createAttribute"
+            class="btn btn-success float-right "><i class="fa fa-plus"></i>Add</button>
+        </div>
+
+        <div class="mb-3 col-2 ">
+          <button (click)=refreshTasks() class="btn btn-danger float-right "><i class="fa fa-refresh"></i></button>
+        </div>
       </div>
-      
-    <div class="mb-3 col-2 ">
-      <button (click)=refreshTasks() class="btn btn-danger float-right "><i class="fa fa-refresh"></i></button>
-    </div>
-      </div>
-     
-        <table class="table table-bordered  table-sm">
-          <thead >
-            <tr  style="background-color: #1ABC9C;color: white;">
-              <th>Id</th>
-              <th >Description</th>
-              <th >Status</th>
-              <!-- <th >Created By</th> -->
-              <th >Created Time</th>
-              <th >Active</th>
-            </tr>
-          </thead>
-          <tbody class="table-Info">  
-                  
-              <div *ngIf = "attributeData.length==0">
-                <label >No attribute data Found!</label>
-              </div>
-              <tr *ngFor="let attribute of attributeData "  >
-              <td class="topis">{{ attribute.attributeId }}</td>
-              <td class="topis"> {{ attribute.attrDesc }}</td>
-              <td class="topis" > {{ attribute.status }}</td>
-              <!-- <td class="topis"> {{ task.createdBy }}</td> -->
-              <td class="topis"> {{ attribute.createdDate }}</td>
-              <td class="topis"> {{ attribute.isActive }}</td>
-              <td class="topis" >       
-                <button type="button" title="View/update Module" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> Open</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+
+      <table class="table table-bordered  table-sm">
+        <thead>
+          <tr style="background-color: #1ABC9C;color: white;">
+            <th>Id</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th >Attr Type</th>
+            <th >Attr Length</th>
+            <th>Created Time</th>
+            <th>Active</th>
+          </tr>
+        </thead>
+        <tbody class="table-Info">
+
+          <div *ngIf="attributeData.length==0">
+            <label>No attribute data Found!</label>
+          </div>
+          <tr *ngFor="let attribute of attributeData ">
+            <td class="topis">{{ attribute.attributeId }}</td>
+            <td class="topis"> {{ attribute.attrDesc }}</td>
+            <td class="topis"> {{ attribute.status }}</td>
+            <td class="topis"> {{ attribute.attrType }}</td>
+            <td class="topis"> {{ attribute.attrLength }}</td>
+            <td class="topis"> {{ attribute.createdDate.substring(0,10) }}</td>
+            <td class="topis"> {{ attribute.isActive }}</td>
+            <td class="topis">
+              <button type="button" (click)=showUpdate(attribute) data-toggle="modal" data-target="#updateAttribute"  title="View/update Module" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i>
+                Open</button>
+                <button type="button" (click)=deleteAttribute(attribute) title="delete" class="btn btn-danger ml-2 btn-sm" ><i class="far fa-delete"></i>Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -75,22 +80,186 @@
 
 
 
-<div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="createAttribute" tabindex="-1" role="dialog" aria-labelledby="createAttributeTitle"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
+    <div class="modal-content ">
+      <div class="modal-header bg-dark">
+        <h5 class="modal-title text-white" id="createAttributeTitle">Create Attribute</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <span class="text-white" aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>Modal body text goes here.</p>
+        <form #moduleForm="ngForm" (ngSubmit)="createAttribute()">
+
+          <div class="form-group">
+            <label for="inputModuleDes">Module Id</label>
+            <input type="number" readonly [(ngModel)]="attributeForm.moduleMasterId" required name="moduleId" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="inputModuleDes">Company Id</label>
+            <input type="number" readonly [(ngModel)]="attributeForm.companyId" required name="companyId" class="form-control" id="inputModuleDes">
+          </div>
+          <div class="form-group">
+            <label for="inputModuleDes">Attribute description</label>
+            <input type="text" [(ngModel)]="attributeForm.attrDesc" required name="attrDesc" class="form-control"
+              id="inputModuleDes" placeholder="Description">
+          </div>
+          <div class="form-group">
+            <label for="inputModuleDes">Attribute Length</label>
+            <input type="number" [(ngModel)]="attributeForm.attrLength" required name="attrLength"
+              class="form-control" id="attrLength" >
+          </div>
+          <div class="mt-2">
+            <label for="">Input Control Type</label>
+          <select name="inputControlType" class="custom-select mt-2" [(ngModel)]="attributeForm.inputControlType">
+           
+            <option value="" disabled selected class="small"> Select Input Type </option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+
+          </select>
+          </div>
+          <div class="mt-2">
+            <label for="">Attribute Type</label>
+            <select name="attrType" class="custom-select" [(ngModel)]="attributeForm.attrType">
+            
+              <option value="" disabled selected>Select Type</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+  
+            </select>
+          </div>
+          <div class="mt-2">
+            <label for="">Action Type</label>
+          <select name="action" class="custom-select" [(ngModel)]="attributeForm.action">
+           
+            <option value="" disabled selected>Select Type</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+
+          </select>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" [(ngModel)]="attributeForm.status" required type="checkbox" value=""
+              name="inputModuleIsActive" id="inputModuleIsActive" checked>
+            <label class="form-check-label" for="inputModuleIsActive">
+              Is Active
+            </label>
+
+          </div>
+          <hr>
+          <button type="submit" class="btn btn-primary">Create</button>
+
+          <button type="button" (click)=closeModal() class="btn btn-secondary float-right"
+            data-dismiss="modal">Close</button>
+
+        </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      <div *ngIf="popUpMsg!=null" class="alert alert-success" role="alert">
+        {{popUpMsg}}
       </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="updateAttribute" tabindex="-1" role="dialog" aria-labelledby="updateAttributeTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content ">
+      <div class="modal-header bg-dark">
+        <h5 class="modal-title text-white" id="updateAttributeTitle">Update Attribute</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span class="text-white" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #moduleForm="ngForm" (ngSubmit)="updateAttribute()">
+
+          <div class="form-group">
+            <label for="inputModuleDes">Module Id</label>
+            <input type="number" readonly [(ngModel)]="attributeForm.moduleMasterId" required name="moduleId" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="inputModuleDes">Company Id</label>
+            <input type="number" readonly [(ngModel)]="attributeForm.companyId" required name="companyId" class="form-control" id="inputModuleDes">
+          </div>
+          <div class="form-group">
+            <label for="inputModuleDes">Attribute description</label>
+            <input type="text" [(ngModel)]="attributeForm.attrDesc" required name="attrDesc" class="form-control"
+              id="inputModuleDes" placeholder="Description">
+          </div>
+          <div class="form-group">
+            <label for="inputModuleDes">Attribute Length</label>
+            <input type="number" [(ngModel)]="attributeForm.attrLength" required name="attrLength"
+              class="form-control" id="attrLength" >
+          </div>
+          <div class="mt-2">
+            <label for="">Input Control Type</label>
+          <select name="inputControlType" class="custom-select mt-2" [(ngModel)]="attributeForm.inputControlType">
+           
+            <option value="" disabled selected class="small"> Select Input Type </option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+
+          </select>
+          </div>
+          <div class="mt-2">
+            <label for="">Attribute Type</label>
+            <select name="attrType" class="custom-select" [(ngModel)]="attributeForm.attrType">
+            
+              <option value="" disabled selected>Select Type</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+  
+            </select>
+          </div>
+          <div class="mt-2">
+            <label for="">Action Type</label>
+          <select name="action" class="custom-select" [(ngModel)]="attributeForm.action">
+           
+            <option value="" disabled selected>Select Type</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+
+          </select>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" [(ngModel)]="attributeForm.status" required type="checkbox" value=""
+              name="inputModuleIsActive" id="inputModuleIsActive" checked>
+            <label class="form-check-label" for="inputModuleIsActive">
+              Is Active
+            </label>
+
+          </div>
+          <hr>
+          <button type="submit" class="btn btn-primary">Update</button>
+
+          <button type="button" (click)=closeModal() class="btn btn-secondary float-right"
+            data-dismiss="modal">Close</button>
+
+        </form>
+      </div>
+      <div *ngIf="popUpMsg!=null" class="alert alert-success" role="alert">
+        {{popUpMsg}}
+      </div>
+
+
+
+
     </div>
   </div>
 </div>

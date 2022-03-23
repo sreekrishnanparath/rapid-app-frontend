@@ -4,7 +4,7 @@ export class User {
     age : number
     userId : number
     userName:String
-    passwrod : String
+    password : String
     userEmail : String
 
     constructor(userId : number,userName:String,lastName : String,age : number,passwrod : String,userEmail : String){
@@ -12,7 +12,7 @@ export class User {
         this.age = age
         this.userId = userId
         this.userName = userName
-        this.passwrod = passwrod
+        this.password = passwrod
         this.userEmail = userEmail
     }
 

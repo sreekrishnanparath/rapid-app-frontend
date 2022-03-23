@@ -15,9 +15,9 @@ export class HomeComponent implements OnInit {
   constructor(private configService : ConfiguationService) { }
 
   ngOnInit() {
-      this.configService.getUserInfo().subscribe(userInfo => {
-        this.userInfo = userInfo;
-      });
+      // this.configService.getUserInfo().subscribe(userInfo => {
+      //   this.userInfo = userInfo;
+      // });
         // this.headerService.title.subscribe(title => {
         //   this.title = title;
         // });
