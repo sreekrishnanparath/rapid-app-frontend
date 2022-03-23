@@ -19,6 +19,7 @@ import { AttributeMasterComponent } from './attribute-master/attribute-master.co
 import { AttributeDetailsComponent } from './attribute-details/attribute-details.component';
 import { AttributePageComponent } from './attribute-page/attribute-page.component';
 import { ChartsModule } from 'ng2-charts';
+import { HttpInterceptorService } from './services/common/http-interceptor.service';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { ChartsModule } from 'ng2-charts';
     ReactiveFormsModule,
     ChartsModule,
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:HttpInterceptorService,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
