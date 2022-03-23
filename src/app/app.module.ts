@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TransListComponent } from './trans-list/trans-list.component';
@@ -19,7 +18,9 @@ import { AttributeMasterComponent } from './attribute-master/attribute-master.co
 import { AttributeDetailsComponent } from './attribute-details/attribute-details.component';
 import { AttributePageComponent } from './attribute-page/attribute-page.component';
 import { ChartsModule } from 'ng2-charts';
+import { LandingComponent } from './landing/landing.component';
 
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,6 @@ import { ChartsModule } from 'ng2-charts';
     SidebarComponent,
     NavbarComponent,
     HomeComponent,
-    FooterComponent,
     TransListComponent,
     RegisterComponent,
     NavLinkComponent,
@@ -38,6 +38,8 @@ import { ChartsModule } from 'ng2-charts';
     AttributeMasterComponent,
     AttributeDetailsComponent,
     AttributePageComponent,
+    LandingComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

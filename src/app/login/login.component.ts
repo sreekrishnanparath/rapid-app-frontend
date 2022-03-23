@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
           alert(response.userName) 
           this.router.navigate(['home'])
         },
-        error => { alert('Failed!') }
+        error => { alert('Failed!'+ error ) }
       );
     }
     
