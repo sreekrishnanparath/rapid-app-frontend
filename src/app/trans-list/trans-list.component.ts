@@ -73,6 +73,7 @@ export class TransListComponent implements OnInit {
  chartFieldY : string
  chartFieldX: string
  chartFieldX1 : string
+ chartFieldY1 : string
   resultMap: Map<string, []> = new Map<string, []>();
 
 // Tuple type variable 
@@ -152,11 +153,22 @@ export class TransListComponent implements OnInit {
       if(value==this.chartFieldX){
         this.barChartData[0]['data'] = key
         this.barChartData[0]['label'] = value
-        this.polarAreaChartData = key
       }
       if(value==this.chartFieldY){
         this.barChartLabels = []
         this.barChartLabels = key
+        
+      }
+    })
+  }
+
+  updatepolarAreaChart(){
+    //console.log(this.barChartLabels)
+    this.resultMap.forEach((key,value)=>{
+      if(value==this.chartFieldX1){
+        this.polarAreaChartData = key
+      }
+      if(value==this.chartFieldY1){
         this.polarAreaChartLabels = []
         this.polarAreaChartLabels = key
         

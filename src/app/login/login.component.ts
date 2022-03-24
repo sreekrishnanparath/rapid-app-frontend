@@ -22,13 +22,16 @@ export class LoginComponent implements OnInit {
     if( this.user.userEmail.match(
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     )){
+      this.user.username = this.user.userEmail
       this.confService.doLogin(this.user).subscribe(
-        (response : User) => {
-          localStorage.setItem("user_info", JSON.stringify(response));
-          alert(response.userName) 
-          this.router.navigate(['home'])
+        
+        (response) => {
+            localStorage.setItem("user_info",  JSON.stringify(response['userDetails']));
+            localStorage.setItem("jwtToken", response['jwtToken']);
+            this.router.navigate(['home'])
         },
-        error => { alert('Failed!'+ error ) }
+        error => { 
+          alert(error.error.message) }
       );
     }
     

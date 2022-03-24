@@ -13,7 +13,7 @@ export class MenuService {
     this.menuList.push(new menu("home/module","Module","Module","fa fa-check-square-o"));
      this.menuList.push(new menu("home/report","Report","Report","fa fa-user"));
     this.menuList.push(new menu("home/attribute","Attribute","Attribute","fa fa-clock-o"));
-    this.menuList.push(new menu("home/report","Report","Report","fa fa-user"));
+    //this.menuList.push(new menu("home/report","Report","Report","fa fa-user"));
     //this.menuList.push(new menu("tasks","View Issues","customer","fa fa-eye"));
     //this.menuList.push(new menu("tasks","Active Issues","support","fa fa-clock-o"));
     //this.menuList.push(new menu("tasks/Closed","Closed Issues","support","fa fa-check-square-o "));

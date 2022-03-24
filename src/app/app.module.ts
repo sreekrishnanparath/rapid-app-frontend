@@ -19,7 +19,7 @@ import { AttributeDetailsComponent } from './attribute-details/attribute-details
 import { AttributePageComponent } from './attribute-page/attribute-page.component';
 import { ChartsModule } from 'ng2-charts';
 import { LandingComponent } from './landing/landing.component';
-
+import { HttpInterceptorService } from './services/common/http-interceptor.service';
 import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
@@ -49,7 +49,7 @@ import { FooterComponent } from './footer/footer.component';
     ReactiveFormsModule,
     ChartsModule,
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:HttpInterceptorService,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
