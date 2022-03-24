@@ -19,7 +19,11 @@ export class ModuleComponent implements OnInit {
       this.refreshTasks()
   }
 
-  
+  resetPopUpMsg()
+  {
+    this.popUpMsg = null;
+
+  }
   refreshTasks(){
     this.configService.getAllModuleList().subscribe(
         response=> {this.moduleData =  response 
@@ -41,7 +45,7 @@ export class ModuleComponent implements OnInit {
       
       
     );
-    
+
   }
 
 }

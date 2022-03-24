@@ -52,7 +52,6 @@
             <td class="topis">{{ module.moduleId }}</td>
             <td class="topis"> {{ module.moduleDesc }}</td>
             <td class="topis" > {{ module.status }}</td>
-            <!-- <td class="topis"> {{ task.createdBy }}</td> -->
             <td class="topis"> {{ module.createdDate }}</td>
             <td class="topis"> {{ module.isActive }}</td>
             <td class="topis" >       
@@ -64,46 +63,47 @@
 
 
 
-<!-- Modal -->
+    <!-- Modal for crete module-->
 
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content ">
-      <div class="modal-header bg-dark">
-        <h5 class="modal-title text-white" id="exampleModalLongTitle">Create Module</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span class="text-white" aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form #moduleForm="ngForm" (ngSubmit)="createModule()">
-
-          <div class="form-group">
-            <label for="inputModuleDes">Module description</label>
-            <input type="text"  [(ngModel)]="newModule.moduleDesc" required name="inputModuleDes" class="form-control" id="inputModuleDes" placeholder="Description">
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+          <div class="modal-header bg-dark">
+            <h5 class="modal-title text-white" id="exampleModalLongTitle">Create Module</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span class="text-white" aria-hidden="true">&times;</span>
+            </button>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" [(ngModel)]="newModule.isActive" required type="checkbox" value="" name="inputModuleIsActive" id="inputModuleIsActive" checked>
-            <label class="form-check-label" for="inputModuleIsActive">
-              Is Active
-            </label>
+          <div class="modal-body">
+            <form #moduleForm="ngForm" (ngSubmit)="createModule()">
+
+              <div class="form-group">
+                <label for="inputModuleDes">Module description</label>
+                <input type="text"  [(ngModel)]="newModule.moduleDesc" required name="inputModuleDes" class="form-control" id="inputModuleDes" placeholder="Description">
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" [(ngModel)]="newModule.isActive" required type="checkbox" value="" name="inputModuleIsActive" id="inputModuleIsActive" checked>
+                <label class="form-check-label" for="inputModuleIsActive">
+                  Is Active
+                </label>
+                
+              </div>
+              <hr>
+              <button type="submit" class="btn btn-primary"  >Create</button>
+              
+              <button type="button" class="btn btn-secondary float-right" (click)="resetPopUpMsg()" data-dismiss="modal">Close</button>
+              
+            </form>
+          </div>
+          <div *ngIf="popUpMsg!=null" class="alert alert-success" role="alert">
+            {{popUpMsg}}
+          </div>
             
-          </div>
-          <hr>
-          <button type="submit" class="btn btn-primary"  >Create</button>
-          
-          <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Close</button>
-          
-        </form>
-      </div>
-      <div *ngIf="popUpMsg!=null" class="alert alert-success" role="alert">
-        {{popUpMsg}}
-      </div>
-        
 
-        
+            
 
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+    
   </div>

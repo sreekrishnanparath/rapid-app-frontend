@@ -1,43 +1,43 @@
 <div class="col-lg-12 ">
   <div class="row ">
     
-    <div class="input-group mb-3 col-4" >
-      <span class="input-group-text bg-info text-white" for="customer" >Search Company</span>
-      <input type="text"  placeholder="Search Module" class="form-control"  >
-    </div>
-
-
- 
-    <div class="col-2" >
-      <div class="input-group mb-3">
-        <label class="input-group-text bg-info text-white" for="status">Select Status</label>
-        <select name="status" id title="Choose..." placeholder="Select Status" class="form-control form-select" [(ngModel)]="taskType" >
-          <option selected>All</option>
-          <option Value="New">New</option>
-          <!-- <option Value="Progress">Progress</option>
-          <option Value="Resolved">Resolved</option>
-          <option Value="Closed">Closed</option> -->
-        </select>
+      <div class="input-group mb-3 col-4" >
+        <span class="input-group-text bg-info text-white" for="customer" >Search Company</span>
+        <input type="text"  placeholder="Company name" class="form-control"  >
       </div>
-    </div>
 
-    <div class="col-4" >
-      <button type="button" class="input-group-text bg-info text-white " data-toggle="modal" data-target="#exampleModalLong">
-        Create Company
-      </button>
-    </div>
 
-  <div class="mb-3 col-2 ">
-    <button (click)=refreshTasks() class="btn btn-danger float-right "><i class="fa fa-refresh"></i></button>
+  
+      <div class="col-2" >
+        <div class="input-group mb-3">
+          <label class="input-group-text bg-info text-white" for="status">Select Status</label>
+          <select name="status" id title="Choose..." placeholder="Select Status" class="form-control form-select" [(ngModel)]="taskType" >
+            <option selected>All</option>
+            <option Value="New">New</option>
+            <!-- <option Value="Progress">Progress</option>
+            <option Value="Resolved">Resolved</option>
+            <option Value="Closed">Closed</option> -->
+          </select>
+        </div>
+      </div>
+
+      <div class="col-4" >
+        <button type="button" class="input-group-text bg-info text-white " data-toggle="modal" data-target="#createModal">
+          Create Company
+        </button>
+      </div>
+    <div>  
+    <div class="mb-3 col-2 ">
+      <button (click)=refreshTasks() class="btn btn-danger float-right "><i class="fa fa-refresh"></i></button>
+    </div>
   </div>
-    </div>
    
       <table class="table table-bordered  table-sm">
         <thead >
           <tr  style="background-color: #1ABC9C;color: white;">
             <th>Company Id</th>
             <th>Company Name</th>
-
+            <th>Actions</th>
             
           </tr>
         </thead>
@@ -52,17 +52,22 @@
 
 
             <td class="topis" >       
-              <button type="button" title="View/update Company" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> Open</button>
+              <!-- open modal -->
+              <button type="button" (click)="updateDetails(company)" title="View/update Company" data-toggle="modal" data-target="#updateModal" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> Open</button>
+              
+              <button type="button" (click)="deleteCompany(company.companyId)"title="Delete Company" class="btn btn-danger btn-sm ml-3" >Delete</button>
             </td>
+
           </tr>
         </tbody>
       </table>
 
+  </div>
+</div>
 
+  <!--create Modal -->
 
-<!-- Modal -->
-
-    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content ">
           <div class="modal-header bg-dark">
@@ -82,7 +87,7 @@
                 <label for="inputCompanyUser"> User</label>
                 <input type="text"  [(ngModel)]="newCompany.companyUser" required name="inputCompanyUser" class="form-control" id="inputCompanyUser" placeholder="Company User">
               </div>
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="inputCompanyStatus"> Status</label>
                 <input type="text"  [(ngModel)]="newCompany.status" required name="inputCompanyStatus" class="form-control" id="inputCompanyStatus" placeholder="Company Status">
               </div>
@@ -92,11 +97,11 @@
                   Is Active
                 </label>
                 
-              </div>
+              </div> -->
               <hr>
               <button type="submit" class="btn btn-primary"  >Create</button>
               
-              <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary float-right" (click)="resetPopUpMsg()"data-dismiss="modal">Close</button>
               
             </form>
           </div>
@@ -115,4 +120,65 @@
         </div>
       </div>
     </div>
-  </div>
+    <!-- update modal -->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+          <div class="modal-header bg-dark">
+            <h5 class="modal-title text-white" id="exampleModalLongTitle">Update Company</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span class="text-white" aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form #moduleForm="ngForm" (ngSubmit)="updateCompany()">
+
+              <div class="form-group">
+                <label for="inputCompanyName"> Name</label>
+                <input type="text"  [(ngModel)]="newCompany.companyName" required name="inputCompanyName" class="form-control" id="inputCompanyName" placeholder="Company Name">
+              </div>
+              <div class="form-group">
+                <label for="inputCompanyUser"> User</label>
+                <input type="text"  [(ngModel)]="newCompany.companyUser" required name="inputCompanyUser" class="form-control" id="inputCompanyUser" placeholder="Company User">
+              </div>
+              <div class="form-group">
+                <label for="inputCompanyStatus"> Status</label>
+                <input type="text" readonly [(ngModel)]="newCompany.status" required name="inputCompanyStatus" class="form-control" id="inputCompanyStatus" placeholder="Company Status">
+              </div>
+              <div class="form-check">
+                <div *ngIf="newCompany.isActive==false;then uncheck else check">
+                </div>
+                <ng-template #check>
+                  <input class="form-check-input"  checked  required type="checkbox" value="" name="inputCompanyIsActive" id="inputCompanyIsActive" >
+                </ng-template>
+                <ng-template #uncheck>
+                  <input class="form-check-input"  required type="checkbox" value="" name="inputCompanyIsActive" id="inputCompanyIsActive" >
+                </ng-template>
+                
+                <label class="form-check-label" for="inputCompanyIsActive">
+                  Is Active
+                </label>
+                
+              </div>
+              <hr>
+              <button type="submit" class="btn btn-primary"  >Update</button>
+              
+              <button type="button" class="btn btn-secondary float-right" (click)="resetPopUpMsg()"data-dismiss="modal">Close</button>
+              
+            </form>
+          </div>
+          
+          <div *ngIf="popUpMsg!=null" >
+            <div *ngIf="popUpMsg=='Updated'" class="alert alert-success" role="alert">
+            {{popUpMsg}}
+            </div>
+            <div *ngIf="popUpMsg=='Unable to update company details' " class="alert alert-danger" role="alert">
+              {{popUpMsg}}
+              </div>
+          </div>
+
+            
+
+        </div>
+      </div>
+    </div>

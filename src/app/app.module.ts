@@ -19,6 +19,8 @@ import { AttributeMasterComponent } from './attribute-master/attribute-master.co
 import { AttributeDetailsComponent } from './attribute-details/attribute-details.component';
 import { AttributePageComponent } from './attribute-page/attribute-page.component';
 import { ChartsModule } from 'ng2-charts';
+import { UserComponent } from './user/user.component';
+import { CompanyFilterPipe } from './company-filter.pipe';
 
 
 @NgModule({
@@ -38,6 +40,8 @@ import { ChartsModule } from 'ng2-charts';
     AttributeMasterComponent,
     AttributeDetailsComponent,
     AttributePageComponent,
+    UserComponent,
+    CompanyFilterPipe,
   ],
   imports: [
     BrowserModule,
