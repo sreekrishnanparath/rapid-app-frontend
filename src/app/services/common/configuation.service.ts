@@ -10,11 +10,7 @@ import {tap} from 'rxjs/operators';
 })
 export class ConfiguationService {
 
-  // headerData = {
-  //   headers: new HttpHeaders()
-  //     .set("Authorization", "Bearer "+localStorage.getItem('jwtToken'))
-  //     .set("Content-Type", "application/json")     
-  //   }
+
 
     loginHeaderData = {
       headers: new HttpHeaders()
@@ -27,9 +23,10 @@ export class ConfiguationService {
   doLogin(user : User){
     return this.http.post('/login',JSON.stringify(user),this.loginHeaderData);
   }
+
   createUser(user:User){
     console.log(user);
-    return this.http.post('http://localhost:8082/rapidapp/user/create',
+    return this.http.post('/user/create',
       user);
   }
   getAllTransaction() {   
@@ -58,23 +55,19 @@ export class ConfiguationService {
   }
 
   updatModule(module:Module){
-    return this.http.put('http://localhost:8082/rapidapp/module/update/'+module.moduleId,JSON.stringify(module),this.headerData);
+    return this.http.put('/module/update/'+module.moduleId,JSON.stringify(module));
   }
   deleteModule(moduleId:number){
-    return this.http.delete('http://localhost:8082/rapidapp/module/delete/'+moduleId);
+    return this.http.delete('/module/delete/'+moduleId);
   }
 
   companies : Company[] =[];
   getAllCompanyList() {   
-    return this.http.get<Company[]>('http://localhost:8082/rapidapp/company/companies').pipe(
+    return this.http.get<Company[]>('/company/companies').pipe(
       tap((c)=>{this.companies = c})
     );
   }
 
-  getAllCompanyList() {   
-    return this.http.get<Company[]>('/company/companies')
-
-  };
 
   createCompany(company : Company)
   {
@@ -83,24 +76,24 @@ export class ConfiguationService {
 
   deleteCompanyById(companyId : number)
   {
-    return this.http.delete('http://localhost:8082/rapidapp/company/delete/'+companyId,this.headerData);
+    return this.http.delete('/company/delete/'+companyId);
   
   }
   updateCompany(company:Company)
   {
-    return this.http.put('http://localhost:8082/rapidapp/company/update/'+company.companyId,JSON.stringify(company),this.headerData);
+    return this.http.put('/company/update/'+company.companyId,JSON.stringify(company));
   }
 
   createAttributes(attribute: Attribute){
-    return this.http.post('http://localhost:8082/rapidapp/attr/create',JSON.stringify(attribute),this.headerData);
+    return this.http.post('/attr/create',JSON.stringify(attribute));
   }
   
   updateAttribute(attribute: Attribute){
-    return this.http.put('http://localhost:8082/rapidapp/attr/update/'+attribute.attributeId,JSON.stringify(attribute),this.headerData);
+    return this.http.put('/attr/update/'+attribute.attributeId,JSON.stringify(attribute));
   }
   
   deleteAttribute(attributeId: number){
-    return this.http.delete('http://localhost:8082/rapidapp/attr/delete/'+attributeId);
+    return this.http.delete('/attr/delete/'+attributeId);
   }
   
   getModuleAttributes(moduleId : number) {   
@@ -111,21 +104,19 @@ export class ConfiguationService {
 
     );
   };
-  createUser(user:User)
-  {
-    return this.http.post('http://localhost:8082/rapidapp/user/create',JSON.stringify(user),this.headerData);
-  }
+
   deleteUserById(userId : number)
   {
-    return this.http.delete('http://localhost:8082/rapidapp/user/delete/'+userId,this.headerData);
+    return this.http.delete('/user/delete/'+userId);
   }
+
   updateUser(user:User)
   {
-    return this.http.put('http://localhost:8082/rapidapp/user/update/'+user.userId,JSON.stringify(user),this.headerData);
+    return this.http.put('/user/update/'+user.userId,JSON.stringify(user));
   }
   users : User[] =[];
   getAllUserList() {   
-    return this.http.get<User[]>('http://localhost:8082/rapidapp/user/users').pipe(
+    return this.http.get<User[]>('/user/users').pipe(
       tap((c)=>{this.users = c})
     );
 
