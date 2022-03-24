@@ -14,9 +14,7 @@ export class MenuService {
      this.menuList.push(new menu("home/report","Report","Report","fa fa-eye"));
     this.menuList.push(new menu("home/attribute","Attribute","Attribute","fa fa-clock-o"));
     this.menuList.push(new menu("home/company","Company","Company","fa fa-industry"));
-    this.menuList.push(new menu("home/user","User","User","fa fa-User"));
-    //this.menuList.push(new menu("tasks","Active Issues","support","fa fa-clock-o"));
-    //this.menuList.push(new menu("tasks/Closed","Closed Issues","support","fa fa-check-square-o "));
+    this.menuList.push(new menu("home/user","User","User","fa fa-User"))
   }
 
   // getMenuList(group : String){
@@ -25,6 +23,7 @@ export class MenuService {
   // }
 
   getMenuList(){
+    console.log('yes')
     return this.menuList
   }
 

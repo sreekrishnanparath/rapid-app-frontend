@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TransListComponent } from './trans-list/trans-list.component';
@@ -21,6 +20,9 @@ import { AttributePageComponent } from './attribute-page/attribute-page.componen
 import { ChartsModule } from 'ng2-charts';
 import { UserComponent } from './user/user.component';
 import { CompanyFilterPipe } from './company-filter.pipe';
+import { LandingComponent } from './landing/landing.component';
+import { HttpInterceptorService } from './services/common/http-interceptor.service';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -30,7 +32,6 @@ import { CompanyFilterPipe } from './company-filter.pipe';
     SidebarComponent,
     NavbarComponent,
     HomeComponent,
-    FooterComponent,
     TransListComponent,
     RegisterComponent,
     NavLinkComponent,
@@ -42,6 +43,8 @@ import { CompanyFilterPipe } from './company-filter.pipe';
     AttributePageComponent,
     UserComponent,
     CompanyFilterPipe,
+    LandingComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,7 @@ import { CompanyFilterPipe } from './company-filter.pipe';
     ReactiveFormsModule,
     ChartsModule,
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:HttpInterceptorService,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

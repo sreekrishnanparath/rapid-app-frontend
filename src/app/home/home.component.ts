@@ -18,9 +18,9 @@ export class HomeComponent implements OnInit {
       // this.configService.getUserInfo().subscribe(userInfo => {
       //   this.userInfo = userInfo;
       // });
-      //   this.headerService.title.subscribe(title => {
-      //     this.title = title;
-      //   });
+        // this.headerService.title.subscribe(title => {
+        //   this.title = title;
+        // });
      }
        
 }
