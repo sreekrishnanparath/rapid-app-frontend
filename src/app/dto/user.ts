@@ -3,7 +3,8 @@ export class User {
     lastName : String
     age : number
     userId : number
-    username:String
+    userName:String
+    password : String
     passwrod : String
     userEmail : String
 
@@ -11,7 +12,8 @@ export class User {
         this.username  = userName
         this.age = age
         this.userId = userId
-        this.username = userName
+        this.userName = userName
+        this.password = passwrod
         this.passwrod = passwrod
         this.userEmail = userEmail
     }
