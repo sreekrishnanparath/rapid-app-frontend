@@ -11,7 +11,7 @@ export class User {
 
 
     constructor(userId : number,userName:String,lastName : String,age : number,passwrod : String,userEmail : String){
-        this.username  = userName
+        this.lastName  = lastName
         this.age = age
         this.userId = userId
         this.userName = userName
