@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { LandingComponent } from './landing/landing.component';
 import { ModuleComponent } from './module/module.component';
 import { TransListComponent } from './trans-list/trans-list.component';
+import { UserComponent } from './user/user.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
       {path:'module',component:ModuleComponent},
       {path:'report',component:TransListComponent},
       {path:'company',component:CompanyComponent},
-      {path:'attribute',component:AttributeMasterComponent}
+      {path:'attribute',component:AttributeMasterComponent},
+      {path:'user',component:UserComponent}
     ]
   }
 

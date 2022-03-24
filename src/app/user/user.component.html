@@ -1,0 +1,157 @@
+<div class="col-lg-12 ">
+  <div class="row ">
+    
+      <div class="input-group mb-3 col-4" >
+        <span class="input-group-text bg-info text-white" for="customer" >Search User</span>
+        <input type="text"  placeholder="Search User" class="form-control"  >
+      </div>
+
+
+  
+
+
+      <div class="col-4" >
+        <button type="button" class="input-group-text bg-info text-white " data-toggle="modal" data-target="#createModal">
+          Create User
+        </button>
+      </div>
+    <div>  
+    <div class="mb-3 col-4 ">
+      <button (click)=refreshTasks() class="btn btn-danger float-right "><i class="fa fa-refresh"></i></button>
+    </div>
+  </div>
+   
+      <table class="table table-bordered  table-sm">
+        <thead >
+          <tr  style="background-color: #1ABC9C;color: white;">
+            <th>User Id</th>
+            <th>User Email</th>
+            <th>Actions</th>
+            
+          </tr>
+        </thead>
+        <tbody class="table-Info">  
+                
+            <div *ngIf = "userData.length==0">
+              <label >No {{userData}} user data Found!</label>
+            </div>
+          <tr *ngFor="let user of userData "  >
+            <td class="topis">{{ user.userId }}</td>
+            <td class="topis">{{ user.userEmail }}</td>
+
+
+            <td class="topis" >       
+              
+              <button type="button" (click)="updateDetails(user)" title="View/update User" data-toggle="modal" data-target="#updateModal" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> Open</button>
+              
+              <button type="button" (click)="deleteUser(user.userId)" title="Delete User" class="btn btn-danger btn-sm ml-3" >Delete</button>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+
+  </div>
+</div>
+  <!--create Modal -->
+
+  <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content ">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="exampleModalLongTitle">Create User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span class="text-white" aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #moduleForm="ngForm" (ngSubmit)="createUser()">
+
+            <div class="form-group">
+              <label for="inputCompanyName"> Email</label>
+              <input type="email" [(ngModel)]="newUser.userEmail" required name="inputuserEmail" class="form-control" id="inputuserEmail" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label for="inputCompanyName"> Password</label>
+              <input type="password"  [(ngModel)]="newUser.password" required name="inputpassword" class="form-control" id="inputpassword" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <label for="inputCompanyName"> Name</label>
+              <input type="text"  [(ngModel)]="newUser.userName" required name="inputuserName" class="form-control" id="inputuserName" placeholder="Username">
+            </div>
+            <div class="form-group">
+              <label for="inputCompanyName"> age</label>
+              <input type="number"  [(ngModel)]="newUser.age" required name="inputage" class="form-control" id="inputage" placeholder="Age">
+            </div>
+            <hr>
+            <button type="submit" class="btn btn-primary"  >Create</button>
+            
+            <button type="button" class="btn btn-secondary float-right" (click)="resetPopUpMsg()"data-dismiss="modal">Close</button>
+            
+          </form>
+        </div>
+        
+        <div *ngIf="popUpMsg!=null" >
+          <div *ngIf="popUpMsg=='User Created'" class="alert alert-success" role="alert">
+          {{popUpMsg}}
+          </div>
+          <div *ngIf="popUpMsg=='Unable to create user' " class="alert alert-danger" role="alert">
+            {{popUpMsg}}
+            </div>
+        </div>
+
+          
+
+      </div>
+    </div>
+  </div>
+  <!-- update modal -->
+  <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content ">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="exampleModalLongTitle">Update User</h5>
+          <button (click)="refreshTasks()"type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span class="text-white" aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #moduleForm="ngForm" (ngSubmit)="updateUser()">
+
+            <div class="form-group">
+              <label for="inputEmail"> Email</label>
+              <input type="email"  [readonly]=true [(ngModel)]="updateUserDetails.userEmail" required name="inputUserEmail" class="form-control" id="inputUserEmail" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label for="inputPassword"> Password</label>
+              <input type="password"  [(ngModel)]="updateUserDetails.password" required name="inputPassword" class="form-control" id="inputPassword" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <label for="inputName"> Name</label>
+              <input type="text"[readonly]=true   [(ngModel)]="updateUserDetails.userName" required name="inputUserName" class="form-control" id="inputUserName" placeholder="User Name">
+            </div>
+            <div class="form-group">
+              <label for="inputAge"> Age</label>
+              <input type="text" [readonly]=true  [(ngModel)]="updateUserDetails.age" required name="inputAge" class="form-control" id="inputAge" placeholder="Age">
+            </div>
+
+            <hr>
+            <button type="submit" class="btn btn-primary"  >Update</button>
+            
+            <button type="button" class="btn btn-secondary float-right" (click)="resetPopUpMsg()"data-dismiss="modal">Close</button>
+            
+          </form>
+        </div>
+        
+        <div *ngIf="popUpMsg!=null" >
+          <div *ngIf="popUpMsg=='Updated'" class="alert alert-success" role="alert">
+          {{popUpMsg}}
+          </div>
+          <div *ngIf="popUpMsg=='Unable to update company details' " class="alert alert-danger" role="alert">
+            {{popUpMsg}}
+            </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>

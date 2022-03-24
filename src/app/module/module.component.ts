@@ -21,6 +21,12 @@ export class ModuleComponent implements OnInit {
       this.refreshTasks()
   }
 
+
+  resetPopUpMsg()
+  {
+    this.popUpMsg = null;
+  }
+
   showUpdate(module: Module){
     this.newModule = module;
   }
@@ -41,6 +47,7 @@ export class ModuleComponent implements OnInit {
       
       
     );
+
   }
   refreshTasks(){
     this.configService.getAllModuleList().subscribe(
@@ -64,7 +71,7 @@ export class ModuleComponent implements OnInit {
       
       
     );
-    
+
   }
   deleteModule(moduleId:number){
     
