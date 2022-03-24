@@ -1,0 +1,16 @@
+img{
+    max-height: 500px;
+    width: 100%;
+}
+h1,h5{
+    line-height: 1.5em;
+}
+#whatwedo{
+    background-color: #f8f6f6;
+}
+button{
+    background-color: #d60973;
+}
+.card{
+  background-color: #fff !important;
+}
