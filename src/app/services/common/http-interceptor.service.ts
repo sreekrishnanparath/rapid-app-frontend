@@ -17,13 +17,20 @@ export class HttpInterceptorService implements HttpInterceptor {
       return next.handle(req);
     }
 
-    if (req.url.includes('trans')) {
-      return next.handle(req);
-    }
+    // if (req.url.includes('trans')) {
+    //   return next.handle(req);
+    // }
 
-    if (req.url.includes('module')) {
-      return next.handle(req);
-    }
+    // if (req.url.includes('module')) {
+    //   req = req.clone({
+    //     setHeaders :{
+    //       'Content-Type': 'application/json',
+    //       'mode': 'no-cors',
+    //       'Accept': 'application/json'
+    //     }
+    //   });
+    //   return next.handle(req);
+    // }
 
 
     let sessionToken = localStorage.getItem('jwtToken');
@@ -31,7 +38,7 @@ export class HttpInterceptorService implements HttpInterceptor {
 
     req = req.clone({
       setHeaders :{
-        Authorization: sessionToken,
+        Authorization: 'Bearer ' +sessionToken,
         'Content-Type': 'application/json',
         'mode': 'no-cors',
         'Accept': 'application/json'
