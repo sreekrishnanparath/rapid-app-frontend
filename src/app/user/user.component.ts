@@ -10,7 +10,7 @@ import { ConfiguationService } from '../services/common/configuation.service';
 })
 export class UserComponent implements OnInit {
 
-
+  searchBox: string ;
   userData : User [] = [];
   newUser : User = new User (0,"","",0,"","");
   popUpMsg =null;

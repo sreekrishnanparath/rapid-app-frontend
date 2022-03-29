@@ -3,7 +3,7 @@
     
       <div class="input-group mb-3 col-4" >
         <span class="input-group-text bg-info text-white" for="customer" >Search Company</span>
-        <input type="text"  placeholder="Company name" class="form-control"  >
+        <input type="text" [(ngModel)]="searchBox" placeholder="Company name" class="form-control"  >
       </div>
 
 
@@ -46,7 +46,7 @@
             <div *ngIf = "companyData.length==0">
               <label >No {{companyData}} company data Found!</label>
             </div>
-            <tr *ngFor="let company of companyData "  >
+            <tr *ngFor="let company of companyData | companyFilter:searchBox"  >
             <td class="topis">{{ company.companyId }}</td>
             <td class="topis">{{ company.companyName }}</td>
 
