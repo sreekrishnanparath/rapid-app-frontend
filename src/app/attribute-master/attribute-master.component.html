@@ -2,7 +2,9 @@
   <div class="row">
     <div class="col-lg-2">
       <ol class="list-group">
-        <li class="list-group-item list-group-item-action" *ngFor="let module of moduleData"
+        <li class="list-group-item list-group-item-action"
+         [ngClass]="(module.moduleId===singleModule)?className:''"
+         *ngFor="let module of moduleData"
           (click)="moduleClicked(module)">
           {{ module.moduleDesc}}
         </li>
@@ -46,8 +48,8 @@
             <th>Id</th>
             <th>Description</th>
             <th>Status</th>
-            <th >Attr Type</th>
-            <th >Attr Length</th>
+            <th>Attr Type</th>
+            <th>Attr Length</th>
             <th>Created Time</th>
             <th>Active</th>
           </tr>
@@ -66,9 +68,11 @@
             <td class="topis"> {{ attribute.createdDate.substring(0,10) }}</td>
             <td class="topis"> {{ attribute.isActive }}</td>
             <td class="topis">
-              <button type="button" (click)=showUpdate(attribute) data-toggle="modal" data-target="#updateAttribute"  title="View/update Module" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i>
+              <button type="button" (click)=showUpdate(attribute) data-toggle="modal" data-target="#updateAttribute"
+                title="View/update Module" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i>
                 Open</button>
-                <button type="button" (click)=deleteAttribute(attribute) title="delete" class="btn btn-danger ml-2 btn-sm" ><i class="far fa-delete"></i>Delete</button>
+              <button type="button" (click)=deleteAttribute(attribute) title="delete"
+                class="btn btn-danger ml-2 btn-sm"><i class="far fa-delete"></i>Delete</button>
             </td>
           </tr>
         </tbody>
@@ -90,74 +94,89 @@
           <span class="text-white" aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <form #moduleForm="ngForm" (ngSubmit)="createAttribute()">
+      <div class="modal-body ">
+        <form #moduleForm="ngForm" (ngSubmit)="createAttribute()" class="container col-12">
+          <div class="row">
+            <div class="form-group col-6">
+              <label for="inputModuleDes">Module Id</label>
+              <input type="number" readonly [(ngModel)]="attributeForm.moduleMasterId" required name="moduleId"
+                class="form-control">
+            </div>
+            <div class="form-group col-6">
+              <label for="inputModuleDes">Company Id</label>
+              <input type="number" readonly [(ngModel)]="attributeForm.companyId" required name="companyId"
+                class="form-control" id="inputModuleDes">
+            </div>
+            <div class="form-group col-6">
+              <label for="inputModuleDes">Attribute description</label>
+              <input type="text" [(ngModel)]="attributeForm.attrDesc" required name="attrDesc" class="form-control"
+                id="inputModuleDes" placeholder="Description">
+            </div>
+            <div class="form-group col-6">
+              <label for="inputModuleDes">Attribute Length</label>
+              <input type="number" [(ngModel)]="attributeForm.attrLength" required name="attrLength"
+                class="form-control" id="attrLength">
+            </div>
 
-          <div class="form-group">
-            <label for="inputModuleDes">Module Id</label>
-            <input type="number" readonly [(ngModel)]="attributeForm.moduleMasterId" required name="moduleId" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="inputModuleDes">Company Id</label>
-            <input type="number" readonly [(ngModel)]="attributeForm.companyId" required name="companyId" class="form-control" id="inputModuleDes">
-          </div>
-          <div class="form-group">
-            <label for="inputModuleDes">Attribute description</label>
-            <input type="text" [(ngModel)]="attributeForm.attrDesc" required name="attrDesc" class="form-control"
-              id="inputModuleDes" placeholder="Description">
-          </div>
-          <div class="form-group">
-            <label for="inputModuleDes">Attribute Length</label>
-            <input type="number" [(ngModel)]="attributeForm.attrLength" required name="attrLength"
-              class="form-control" id="attrLength" >
-          </div>
-          <div class="mt-2">
-            <label for="">Input Control Type</label>
-          <select name="inputControlType" class="custom-select mt-2" [(ngModel)]="attributeForm.inputControlType">
-           
-            <option value="" disabled selected class="small"> Select Input Type </option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <div class="mt-0 col-6">
+              <label for="">Input Control Type</label>
+              <select name="inputControlType" class="custom-select "
+                (change)="selectAtrribute($event.currentTarget.value)" [(ngModel)]="attributeForm.inputControlType">
 
-          </select>
-          </div>
-          <div class="mt-2">
-            <label for="">Attribute Type</label>
-            <select name="attrType" class="custom-select" [(ngModel)]="attributeForm.attrType">
-            
-              <option value="" disabled selected>Select Type</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-  
-            </select>
-          </div>
-          <div class="mt-2">
-            <label for="">Action Type</label>
-          <select name="action" class="custom-select" [(ngModel)]="attributeForm.action">
-           
-            <option value="" disabled selected>Select Type</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+                <option value="" disabled selected class="small"> Select Input Type </option>
+                <option [value]="i+1" *ngFor="let attr of inputControlTypes; let i = index">{{attr}}</option>
 
-          </select>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" [(ngModel)]="attributeForm.status" required type="checkbox" value=""
-              name="inputModuleIsActive" id="inputModuleIsActive" checked>
-            <label class="form-check-label" for="inputModuleIsActive">
-              Is Active
-            </label>
+
+              </select>
+            </div>
+
+            <div class="mt-2 col-6" *ngIf="dropDown">
+              <label for=""> Attribute Dependency</label>
+              <select name="attrDependency" class="custom-select" [(ngModel)]="attributeForm.attrDependency">
+
+                <option value="" selected>Select Type</option>
+                <option [value]="i" *ngFor="let attr of lookUpRef; let i=index">{{attr}}</option>
+
+
+              </select>
+            </div>
+            <div class="form-group col-6">
+              <label for="inputModuleDes"> Attribute Type</label>
+
+              <select name="attrType" class="custom-select" [(ngModel)]="attributeForm.attrType">
+
+                <option value="" disabled selected>Select Type</option>
+                <option [value]="i" *ngFor="let attr of attributTypes; let i = index">{{attr}}</option>
+
+
+              </select>
+            </div>
+            <div class="mt-0 col-6" *ngIf="showBtn">
+              <label for="">Action Type</label>
+              <select name="action" class="custom-select" [(ngModel)]="attributeForm.action">
+
+                <option value="" disabled selected>Select Type</option>
+                <option [value]="i" *ngFor="let attr of actionTypes; let i = index">{{attr}}</option>
+
+
+              </select>
+            </div>
+            <div class="form-check col-12 d-block m-2">
+              <input class="form-check-input" [(ngModel)]="attributeForm.status" required type="checkbox" value=""
+                name="inputModuleIsActive" id="inputModuleIsActive" checked>
+              <label class="form-check-label" for="inputModuleIsActive">
+                Is Active
+              </label>
+
+            </div>
+            <div class="">
+              <button type="submit" class="btn btn-primary mr-2">Create</button>
+
+              <button type="button" (click)=closeModal() class="btn btn-secondary float-right"
+                data-dismiss="modal">Close</button>
+            </div>
 
           </div>
-          <hr>
-          <button type="submit" class="btn btn-primary">Create</button>
-
-          <button type="button" (click)=closeModal() class="btn btn-secondary float-right"
-            data-dismiss="modal">Close</button>
-
         </form>
       </div>
       <div *ngIf="popUpMsg!=null" class="alert alert-success" role="alert">
@@ -186,70 +205,87 @@
       <div class="modal-body">
         <form #moduleForm="ngForm" (ngSubmit)="updateAttribute()">
 
-          <div class="form-group">
-            <label for="inputModuleDes">Module Id</label>
-            <input type="number" readonly [(ngModel)]="attributeForm.moduleMasterId" required name="moduleId" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="inputModuleDes">Company Id</label>
-            <input type="number" readonly [(ngModel)]="attributeForm.companyId" required name="companyId" class="form-control" id="inputModuleDes">
-          </div>
-          <div class="form-group">
-            <label for="inputModuleDes">Attribute description</label>
-            <input type="text" [(ngModel)]="attributeForm.attrDesc" required name="attrDesc" class="form-control"
-              id="inputModuleDes" placeholder="Description">
-          </div>
-          <div class="form-group">
-            <label for="inputModuleDes">Attribute Length</label>
-            <input type="number" [(ngModel)]="attributeForm.attrLength" required name="attrLength"
-              class="form-control" id="attrLength" >
-          </div>
-          <div class="mt-2">
-            <label for="">Input Control Type</label>
-          <select name="inputControlType" class="custom-select mt-2" [(ngModel)]="attributeForm.inputControlType">
-           
-            <option value="" disabled selected class="small"> Select Input Type </option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+          <div class="row">
+            <div class="form-group col-6">
+              <label for="inputModuleDes">Module Id</label>
+              <input type="number" readonly [(ngModel)]="attributeForm.moduleMasterId" required name="moduleId"
+                class="form-control">
+            </div>
+            <div class="form-group col-6">
+              <label for="inputModuleDes">Company Id</label>
+              <input type="number" readonly [(ngModel)]="attributeForm.companyId" required name="companyId"
+                class="form-control" id="inputModuleDes">
+            </div>
+            <div class="form-group col-6">
+              <label for="inputModuleDes">Attribute description</label>
+              <input type="text" [(ngModel)]="attributeForm.attrDesc" required name="attrDesc" class="form-control"
+                id="inputModuleDes" placeholder="Description">
+            </div>
+            <div class="form-group col-6">
+              <label for="inputModuleDes">Attribute Length</label>
+              <input type="number" [(ngModel)]="attributeForm.attrLength" required name="attrLength"
+                class="form-control" id="attrLength">
+            </div>
 
-          </select>
-          </div>
-          <div class="mt-2">
-            <label for="">Attribute Type</label>
-            <select name="attrType" class="custom-select" [(ngModel)]="attributeForm.attrType">
-            
-              <option value="" disabled selected>Select Type</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-  
-            </select>
-          </div>
-          <div class="mt-2">
-            <label for="">Action Type</label>
-          <select name="action" class="custom-select" [(ngModel)]="attributeForm.action">
-           
-            <option value="" disabled selected>Select Type</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <div class="mt-0 col-6">
+              <label for="">Input Control Type</label>
+              <select name="inputControlType" class="custom-select "
+                (change)="selectAtrribute($event.currentTarget.value)" [(ngModel)]="attributeForm.inputControlType">
 
-          </select>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" [(ngModel)]="attributeForm.status" required type="checkbox" value=""
-              name="inputModuleIsActive" id="inputModuleIsActive" checked>
-            <label class="form-check-label" for="inputModuleIsActive">
-              Is Active
-            </label>
+                <option value="" disabled selected class="small"> Select Input Type </option>
+                <option [value]="i+1" *ngFor="let attr of inputControlTypes; let i = index">{{attr}}</option>
+
+
+              </select>
+            </div>
+
+            <div class="mt-2 col-6" *ngIf="dropDown">
+              <label for=""> Attribute Dependency</label>
+              <select name="attrDependency" class="custom-select" [(ngModel)]="attributeForm.attrDependency">
+
+                <option value="" selected>Select Type</option>
+                <option [value]="i" *ngFor="let attr of lookUpRef; let i=index">{{attr}}</option>
+
+
+              </select>
+            </div>
+            <div class="form-group col-6">
+              <label for="inputModuleDes"> Attribute Type</label>
+
+              <select name="attrType" class="custom-select" [(ngModel)]="attributeForm.attrType">
+
+                <option value="" disabled selected>Select Type</option>
+                <option [value]="i" *ngFor="let attr of attributTypes; let i = index">{{attr}}</option>
+
+
+              </select>
+            </div>
+            <div class="mt-0 col-6" *ngIf="showBtn">
+              <label for="">Action Type</label>
+              <select name="action" class="custom-select" [(ngModel)]="attributeForm.action">
+
+                <option value="" disabled selected>Select Type</option>
+                <option [value]="i" *ngFor="let attr of actionTypes; let i = index">{{attr}}</option>
+
+
+              </select>
+            </div>
+            <div class="form-check col-12 d-block m-2">
+              <input class="form-check-input" [(ngModel)]="attributeForm.status" required type="checkbox" value=""
+                name="inputModuleIsActive" id="inputModuleIsActive" checked>
+              <label class="form-check-label" for="inputModuleIsActive">
+                Is Active
+              </label>
+
+            </div>
+            <div class="">
+              <button type="submit" class="btn btn-primary mr-2">Create</button>
+
+              <button type="button" (click)=closeModal() class="btn btn-secondary float-right"
+                data-dismiss="modal">Close</button>
+            </div>
 
           </div>
-          <hr>
-          <button type="submit" class="btn btn-primary">Update</button>
-
-          <button type="button" (click)=closeModal() class="btn btn-secondary float-right"
-            data-dismiss="modal">Close</button>
 
         </form>
       </div>
