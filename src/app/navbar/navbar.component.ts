@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.configService.getUserInfo())
+  
      this.user = this.configService.getUserInfo();
    // this.user = new User("");//this.configService.getUserInfo();
     

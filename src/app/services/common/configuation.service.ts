@@ -97,14 +97,13 @@ export class ConfiguationService {
   }
   
   getModuleAttributes(moduleId : number) {   
-    return this.http.post<Attribute[]>('/attr/module/'+moduleId,
-        JSON.stringify({
-          "not_close":"not_close"
-      })
+    return this.http.get<Attribute[]>('/attr/module/'+moduleId
 
     );
   };
-
+  getLookUpRef(){
+    return this.http.get<string[]>('/lookup/lookups/'+1);
+  }
   deleteUserById(userId : number)
   {
     return this.http.delete('/user/delete/'+userId);

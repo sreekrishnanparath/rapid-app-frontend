@@ -1,0 +1,7 @@
+ol>li{
+    cursor: pointer;
+}
+.customBg{
+    background-color: rgb(26, 41, 109);
+    color: white;
+}

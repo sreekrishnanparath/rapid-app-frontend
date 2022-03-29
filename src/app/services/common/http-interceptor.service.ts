@@ -34,7 +34,7 @@ export class HttpInterceptorService implements HttpInterceptor {
 
 
     let sessionToken = localStorage.getItem('jwtToken');
-    console.log(sessionToken)
+  
 
     req = req.clone({
       setHeaders :{
