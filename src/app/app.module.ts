@@ -24,6 +24,7 @@ import { LandingComponent } from './landing/landing.component';
 import { HttpInterceptorService } from './services/common/http-interceptor.service';
 import { FooterComponent } from './footer/footer.component';
 import { UserFilterPipe } from './user-filter.pipe';
+import { AttributeFilterPipe } from './attribute-filter.pipe';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { UserFilterPipe } from './user-filter.pipe';
     CompanyFilterPipe,
     LandingComponent,
     FooterComponent,
-    UserFilterPipe
+    UserFilterPipe,
+    AttributeFilterPipe
   ],
   imports: [
     BrowserModule,
