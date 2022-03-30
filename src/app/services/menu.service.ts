@@ -23,7 +23,6 @@ export class MenuService {
   // }
 
   getMenuList(){
-    console.log('yes')
     return this.menuList
   }
 

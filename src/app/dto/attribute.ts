@@ -13,6 +13,7 @@ export class Attribute {
    createdDate : String
    createdBy : String
    action : number
+   attrDependency : String
 
    constructor(   attributeId : number,
     companyId : number,
@@ -26,7 +27,8 @@ export class Attribute {
     isActive : boolean,
     createdDate : String,
     createdBy : String,
-    action : number
+    action : number,
+    attrDependency : String
  ) {
     this.attributeId = attributeId;
     this.companyId = companyId;
@@ -41,6 +43,7 @@ export class Attribute {
     this.createdDate = createdDate;
     this.createdBy = createdBy;
     this.action = action;
+    this.attrDependency =attrDependency
  }
 
 }
