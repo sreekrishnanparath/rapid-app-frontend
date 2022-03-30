@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
         (response) => {
             localStorage.setItem("user_info",  JSON.stringify(response['userDetails']));
             localStorage.setItem("jwtToken", response['jwtToken']);
-            this.router.navigate(['home'])
+            this.router.navigate(['home/report'])
         },
         error => { 
           alert(error.error.message) }

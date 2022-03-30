@@ -80,7 +80,6 @@ export class AttributeMasterComponent implements OnInit {
       response => {
         this.popUpMsg = "Module Created";
         this.getModuleAttributes(this.attributeForm.moduleMasterId);
-
       },
       error => alert(JSON.stringify(error))
     );

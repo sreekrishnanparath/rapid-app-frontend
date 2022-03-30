@@ -47,11 +47,12 @@
           <tr style="background-color: #1ABC9C;color: white;">
             <th>Id</th>
             <th>Description</th>
-            <th>Status</th>
+            <!-- <th>Status</th> -->
             <th>Attr Type</th>
             <th>Attr Length</th>
             <th>Created Time</th>
             <th>Active</th>
+            <th >Edit/Delete</th>
           </tr>
         </thead>
         <tbody class="table-Info">
@@ -62,7 +63,7 @@
           <tr *ngFor="let attribute of attributeData ">
             <td class="topis">{{ attribute.attributeId }}</td>
             <td class="topis"> {{ attribute.attrDesc }}</td>
-            <td class="topis"> {{ attribute.status }}</td>
+            <!-- <td class="topis"> {{ attribute.status }}</td> -->
             <td class="topis"> {{ attribute.attrType }}</td>
             <td class="topis"> {{ attribute.attrLength }}</td>
             <td class="topis"> {{ attribute.createdDate | date :"short" }}</td>
@@ -135,7 +136,7 @@
               <select name="attrDependency" class="custom-select" [(ngModel)]="attributeForm.attrDependency">
 
                 <option value="" selected>Select Type</option>
-                <option [value]="i" *ngFor="let attr of lookUpRef; let i=index">{{attr}}</option>
+                <option [value]="attr" *ngFor="let attr of lookUpRef">{{attr}}</option>
 
 
               </select>
@@ -170,7 +171,7 @@
 
             </div>
             <div class="">
-              <button type="submit" class="btn btn-primary mr-2">Create</button>
+              <button type="submit"   class="btn btn-primary mr-2">Create</button>
 
               <button type="button" (click)=closeModal() class="btn btn-secondary float-right"
                 data-dismiss="modal">Close</button>

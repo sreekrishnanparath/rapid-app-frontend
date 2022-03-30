@@ -55,7 +55,7 @@
             <td class="topis"> {{ module.moduleDesc }}</td>
             <td class="topis" > {{ module.status }}</td>
             <!-- <td class="topis"> {{ task.createdBy }}</td> -->
-            <td class="topis"> {{ module.createdDate.substring(0,10) }}</td>
+            <td class="topis"> {{ module.createdDate | date :"short" }}</td>
             <td class="topis"> {{ module.isActive }}</td>
             <td class="topis" >       
               <button type="button" (click)=showUpdate(module) data-toggle="modal" data-target="#updateModalLong" title="View/update Module" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> Open</button>
