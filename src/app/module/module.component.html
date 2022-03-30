@@ -4,7 +4,7 @@
     
     <div class="input-group mb-3 col-4" >
       <span class="input-group-text bg-info text-white" for="customer" >Search Module</span>
-      <input type="text"  placeholder="Search Module" class="form-control"  >
+      <input type="text" [(ngModel)]="searchBox" placeholder="Search Module" class="form-control"  >
     </div>
 
 
@@ -50,7 +50,7 @@
             <div *ngIf = "moduleData.length==0">
               <label >No {{moduleData}} module data Found!</label>
             </div>
-            <tr *ngFor="let module of moduleData "  >
+            <tr *ngFor="let module of moduleData | moduleFilter:searchBox"  >
             <td class="topis">{{ module.moduleId }}</td>
             <td class="topis"> {{ module.moduleDesc }}</td>
             <td class="topis" > {{ module.status }}</td>
@@ -103,15 +103,9 @@
             {{popUpMsg}}
           </div>
 
-          <hr>
-          <button type="submit" class="btn btn-primary"  >Create</button>
           
-          <button type="button" (click)=closeModal() class="btn btn-secondary float-right" data-dismiss="modal">Close</button>
-       
       </div>
-      <div *ngIf="popUpMsg!=null" class="alert alert-success" role="alert">
-        {{popUpMsg}}
-      </div>
+      
         </div>
 
     </div>

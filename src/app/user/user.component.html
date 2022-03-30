@@ -3,7 +3,7 @@
     
       <div class="input-group mb-3 col-4" >
         <span class="input-group-text bg-info text-white" for="customer" >Search User</span>
-        <input type="text"  placeholder="Search User" class="form-control"  >
+        <input type="text"  [(ngModel)]="searchBox" placeholder="Search User" class="form-control"  >
       </div>
 
 
@@ -35,7 +35,7 @@
             <div *ngIf = "userData.length==0">
               <label >No {{userData}} user data Found!</label>
             </div>
-          <tr *ngFor="let user of userData "  >
+          <tr *ngFor="let user of userData | userFilter:searchBox"  >
             <td class="topis">{{ user.userId }}</td>
             <td class="topis">{{ user.userEmail }}</td>
 

@@ -6,8 +6,16 @@ import { Module } from './dto/module';
 })
 export class ModuleFilterPipe implements PipeTransform {
 
-  transform(module: Module, searchText: string):any {
 
+  transform(items: Module[],search :string): Module[] {
+    if(!items)return[];
+    if(!search) return items;
+    search = search.toLowerCase();
+    return items.filter(
+      (module :Module)=>{
+        return module.moduleDesc.toLowerCase().match(search)
+      }
+
+    );
   }
-
 }
