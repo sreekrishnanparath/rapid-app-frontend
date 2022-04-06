@@ -23,6 +23,8 @@ import { CompanyFilterPipe } from './company-filter.pipe';
 import { LandingComponent } from './landing/landing.component';
 import { HttpInterceptorService } from './services/common/http-interceptor.service';
 import { FooterComponent } from './footer/footer.component';
+import { UserFilterPipe } from './user-filter.pipe';
+import { AttributeFilterPipe } from './attribute-filter.pipe';
 import { LookupComponent } from './lookup/lookup.component';
 
 
@@ -46,6 +48,8 @@ import { LookupComponent } from './lookup/lookup.component';
     CompanyFilterPipe,
     LandingComponent,
     FooterComponent,
+    UserFilterPipe,
+    AttributeFilterPipe
     LookupComponent
   ],
   imports: [

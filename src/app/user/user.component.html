@@ -65,7 +65,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form #moduleForm="ngForm" (ngSubmit)="createUser()">
+          <form #moduleForm="ngForm" ngNativeValidate (ngSubmit)="createUser()">
 
             <div class="form-group">
               <label for="inputCompanyName"> Email</label>
@@ -116,7 +116,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form #moduleForm="ngForm" (ngSubmit)="updateUser()">
+          <form #moduleForm="ngForm"  (ngSubmit)="updateUser()">
 
             <div class="form-group">
               <label for="inputEmail"> Email</label>

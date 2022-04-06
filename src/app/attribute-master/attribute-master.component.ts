@@ -11,6 +11,7 @@ import { constan } from './constant/constan';
   styleUrls: ['./attribute-master.component.css']
 })
 export class AttributeMasterComponent implements OnInit {
+  searchBox:string;
   popUpMsg: string;
   moduleData: Module[] = []
   attributeData: Attribute[] = []
