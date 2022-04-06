@@ -10,11 +10,14 @@ export class MenuService {
   menuList : menu[] = []; 
 
   constructor(private http : HttpClient) { 
-    this.menuList.push(new menu("home/module","Module","Module","fa fa-check-square-o"));
-     this.menuList.push(new menu("home/report","Report","Report","fa fa-eye"));
-    this.menuList.push(new menu("home/attribute","Attribute","Attribute","fa fa-clock-o"));
     this.menuList.push(new menu("home/company","Company","Company","fa fa-industry"));
-    this.menuList.push(new menu("home/user","User","User","fa fa-User"))
+    this.menuList.push(new menu("home/user","User","User","fa fa-users"))
+    this.menuList.push(new menu("home/lookup","Lookup","Lookup","fa fa-caret-square-o-down"));
+    this.menuList.push(new menu("home/module","Module","Module","fa fa-tasks"));
+    this.menuList.push(new menu("home/attribute","Attribute","Attribute","fa fa-outdent"));
+    this.menuList.push(new menu("home/report","Report","Report","fa fa-dashboard"));
+
+
   }
 
   // getMenuList(group : String){

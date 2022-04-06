@@ -3,7 +3,7 @@
     
       <div class="input-group mb-3 col-4" >
         <span class="input-group-text bg-info text-white" for="customer" >Search User</span>
-        <input type="text"  placeholder="Search User" class="form-control"  >
+        <input type="text"  [(ngModel)]="searchBox" placeholder="Search User" class="form-control"  >
       </div>
 
 
@@ -35,7 +35,7 @@
             <div *ngIf = "userData.length==0">
               <label >No {{userData}} user data Found!</label>
             </div>
-          <tr *ngFor="let user of userData "  >
+          <tr *ngFor="let user of userData"  >
             <td class="topis">{{ user.userId }}</td>
             <td class="topis">{{ user.userEmail }}</td>
 
@@ -65,7 +65,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form #moduleForm="ngForm" (ngSubmit)="createUser()">
+          <form #moduleForm="ngForm" ngNativeValidate (ngSubmit)="createUser()">
 
             <div class="form-group">
               <label for="inputCompanyName"> Email</label>
@@ -116,7 +116,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form #moduleForm="ngForm" (ngSubmit)="updateUser()">
+          <form #moduleForm="ngForm"  (ngSubmit)="updateUser()">
 
             <div class="form-group">
               <label for="inputEmail"> Email</label>

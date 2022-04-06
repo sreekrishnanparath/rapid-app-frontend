@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Alert } from 'selenium-webdriver';
 import { User } from '../dto/user';
@@ -10,7 +11,7 @@ import { ConfiguationService } from '../services/common/configuation.service';
 })
 export class UserComponent implements OnInit {
 
-
+  searchBox: string ;
   userData : User [] = [];
   newUser : User = new User (0,"","",0,"","");
   popUpMsg =null;
@@ -36,6 +37,7 @@ export class UserComponent implements OnInit {
       }
     );
   }
+  ErrorMsg : User;
   createUser(){
     console.log();
     this.configService.createUser(this.newUser).subscribe(
@@ -48,7 +50,9 @@ export class UserComponent implements OnInit {
       },
       error=>{
         this.popUpMsg = "Unable to create user";
-        this.refreshTasks();
+        let errorMsg = new HttpErrorResponse(error);
+        this.ErrorMsg = errorMsg.error;
+        alert(this.ErrorMsg.userEmail+"\n"+this.ErrorMsg.username+"\n"+this.ErrorMsg.age+"\n"+this.ErrorMsg.password)
       }   
     
     );
@@ -69,7 +73,9 @@ export class UserComponent implements OnInit {
       },
       error=>{
         this.popUpMsg = "Unable to update company details";
-        
+        let errorMsg = new HttpErrorResponse(error);
+        this.ErrorMsg = errorMsg.error;
+        alert(this.ErrorMsg.password)
       }   
       
     );
