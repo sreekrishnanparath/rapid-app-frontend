@@ -49,7 +49,7 @@ import { LookupComponent } from './lookup/lookup.component';
     LandingComponent,
     FooterComponent,
     UserFilterPipe,
-    AttributeFilterPipe
+    AttributeFilterPipe,
     LookupComponent
   ],
   imports: [
