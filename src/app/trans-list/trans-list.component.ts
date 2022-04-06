@@ -5,8 +5,6 @@ import { Label, SingleDataSet } from 'ng2-charts';
 import { ConfiguationService } from '../services/common/configuation.service';
 
 function CreateTableFromJSON(data,resultMap) {
-
-
     var col = [];
     for (var i = 0; i < data.length; i++) {
         for (var key in data[i]) {
@@ -19,12 +17,9 @@ function CreateTableFromJSON(data,resultMap) {
             current.push(data[i][key])
             resultMap.set(key, current);
           }
-          
-          
-            if (col.indexOf(key) === -1) {
-                col.push(key);
-                
-            }
+          if (col.indexOf(key) === -1) {
+              col.push(key);
+          }
         }
     }
 

@@ -35,7 +35,7 @@
             <div *ngIf = "userData.length==0">
               <label >No {{userData}} user data Found!</label>
             </div>
-          <tr *ngFor="let user of userData | userFilter:searchBox"  >
+          <tr *ngFor="let user of userData"  >
             <td class="topis">{{ user.userId }}</td>
             <td class="topis">{{ user.userEmail }}</td>
 

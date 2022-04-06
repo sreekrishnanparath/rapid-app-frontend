@@ -53,7 +53,7 @@
             <tr *ngFor="let module of moduleData | moduleFilter:searchBox"  >
             <td class="topis">{{ module.moduleId }}</td>
             <td class="topis"> {{ module.moduleDesc }}</td>
-            <td class="topis" > {{ module.status }}</td>
+            <!-- <td class="topis" > {{ module.status }}</td> -->
             <!-- <td class="topis"> {{ task.createdBy }}</td> -->
             <td class="topis"> {{ module.createdDate | date :"short" }}</td>
             <td class="topis"> {{ module.isActive }}</td>
@@ -92,18 +92,21 @@
                 </label>
                 
               </div>
-              <hr>
+              <br>
+              <div class="">
               <button type="submit" class="btn btn-primary"  >Create</button>
               
               <button type="button" class="btn btn-secondary float-right" (click)="resetPopUpMsg()" data-dismiss="modal">Close</button>
-              
+            </div>
             </form>
           </div>
-          <div *ngIf="popUpMsg!=null" class="alert alert-success" role="alert">
-            {{popUpMsg}}
-          </div>
+        
 
-          
+      
+       
+      </div>
+      <div *ngIf="popUpMsg!=null" class="alert alert-success" role="alert">
+        {{popUpMsg}}
       </div>
       
         </div>
@@ -136,11 +139,15 @@
             </label>
             
           </div>
-          <hr>
-          <button type="submit" class="btn btn-primary"  >Update</button>
+         
+          <div class="">
+            <button type="submit" class="btn btn-primary"  >Update</button>
           
-          <button type="button" (click)=closeModal() class="btn btn-secondary float-right" data-dismiss="modal">Close</button>
-          
+            <button type="button" (click)=closeModal() class="btn btn-secondary float-right" data-dismiss="modal">Close</button>
+            
+          </div>
+
+        
         </form>
       </div>
       <div *ngIf="popUpMsg!=null" class="alert alert-success" role="alert">
