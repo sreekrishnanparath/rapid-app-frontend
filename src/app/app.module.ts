@@ -17,12 +17,13 @@ import { ModuleFilterPipe } from './module-filter.pipe';
 import { AttributeMasterComponent } from './attribute-master/attribute-master.component';
 import { AttributeDetailsComponent } from './attribute-details/attribute-details.component';
 import { AttributePageComponent } from './attribute-page/attribute-page.component';
-import { ChartsModule } from 'ng2-charts';
+import { ChartsModule, ThemeService } from 'ng2-charts';
 import { UserComponent } from './user/user.component';
 import { CompanyFilterPipe } from './company-filter.pipe';
 import { LandingComponent } from './landing/landing.component';
 import { HttpInterceptorService } from './services/common/http-interceptor.service';
 import { FooterComponent } from './footer/footer.component';
+import { LookupComponent } from './lookup/lookup.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { FooterComponent } from './footer/footer.component';
     UserComponent,
     CompanyFilterPipe,
     LandingComponent,
-    FooterComponent
+    FooterComponent,
+    LookupComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,7 @@ import { FooterComponent } from './footer/footer.component';
     ReactiveFormsModule,
     ChartsModule,
   ],
-  providers: [{provide:HTTP_INTERCEPTORS,useClass:HttpInterceptorService,multi:true}],
+  providers: [ThemeService,{provide:HTTP_INTERCEPTORS,useClass:HttpInterceptorService,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

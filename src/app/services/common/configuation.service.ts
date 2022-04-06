@@ -5,6 +5,7 @@ import { Attribute } from 'src/app/dto/attribute';
 import { Module } from 'src/app/dto/module';
 import { User } from 'src/app/dto/user';
 import {tap} from 'rxjs/operators';
+import { Lookup } from 'src/app/dto/lookup';
 @Injectable({
   providedIn: 'root'
 })
@@ -57,6 +58,7 @@ export class ConfiguationService {
   updatModule(module:Module){
     return this.http.put('/module/update/'+module.moduleId,JSON.stringify(module));
   }
+
   deleteModule(moduleId:number){
     return this.http.delete('/module/delete/'+moduleId);
   }
@@ -120,4 +122,29 @@ export class ConfiguationService {
     );
 
   };
+
+  createLookup(lookup : Lookup){
+    return this.http.post('/lookup/create',JSON.stringify(lookup));
+  }
+
+  updatLookup(lookup : Lookup){
+    return this.http.put('/lookup/update/'+lookup.lookId,JSON.stringify(lookup));
+  }
+
+  deleteLookup(lookupId:number){
+    return this.http.delete('/lookup/delete/'+lookupId);
+  }
+
+  getAllLookupList() {   
+    return this.http.post<Lookup[]>('/lookup/company/1',
+        JSON.stringify({
+          "not_close":"not_close"
+      })
+    );
+  };
+  
+  getLookupRefIds() {   
+    return this.http.get<String[]>('/lookup/lookups/1');
+  };
+
 }

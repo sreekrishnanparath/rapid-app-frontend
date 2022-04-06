@@ -9,6 +9,8 @@ import { ModuleComponent } from './module/module.component';
 import { TransListComponent } from './trans-list/trans-list.component';
 import { UserComponent } from './user/user.component';
 import { RegisterComponent } from './register/register.component';
+import { Lookup } from './dto/lookup';
+import { LookupComponent } from './lookup/lookup.component';
 
 const routes: Routes = [
   {path:'',component:LandingComponent},
@@ -22,7 +24,8 @@ const routes: Routes = [
       {path:'report',component:TransListComponent},
       {path:'company',component:CompanyComponent},
       {path:'attribute',component:AttributeMasterComponent},
-      {path:'user',component:UserComponent}
+      {path:'user',component:UserComponent},
+      {path:'lookup',component:LookupComponent}
     ]
   }
 
