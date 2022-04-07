@@ -4,7 +4,7 @@
     
     <div class="input-group mb-3 col-4" >
       <span class="input-group-text bg-info text-white" for="customer" >Search Module</span>
-      <input type="text"  placeholder="Search Module" class="form-control"  >
+      <input type="text" [(ngModel)]="searchBox" placeholder="Search Module" class="form-control"  >
     </div>
 
 
@@ -50,10 +50,10 @@
             <div *ngIf = "moduleData.length==0">
               <label >No {{moduleData}} module data Found!</label>
             </div>
-            <tr *ngFor="let module of moduleData "  >
+            <tr *ngFor="let module of moduleData | moduleFilter:searchBox"  >
             <td class="topis">{{ module.moduleId }}</td>
             <td class="topis"> {{ module.moduleDesc }}</td>
-            <td class="topis" > {{ module.status }}</td>
+            <!-- <td class="topis" > {{ module.status }}</td> -->
             <!-- <td class="topis"> {{ task.createdBy }}</td> -->
             <td class="topis"> {{ module.createdDate | date :"short" }}</td>
             <td class="topis"> {{ module.isActive }}</td>
@@ -95,24 +95,33 @@
                 </label>
                 
               </div>
+<<<<<<< HEAD
               <hr>
               <button type="submit" class="btn btn-primary" [disabled]="moduleForm.form.invalid"  >Create</button>
+=======
+              <br>
+              <div class="">
+              <button type="submit" class="btn btn-primary"  >Create</button>
+>>>>>>> 570681a2e71e2850511b9dc56f28d11bbb9c9834
               
               <button type="button" class="btn btn-secondary float-right" (click)="resetPopUpMsg()" data-dismiss="modal">Close</button>
-              
+            </div>
             </form>
           </div>
-          <div *ngIf="popUpMsg!=null" class="alert alert-success" role="alert">
-            {{popUpMsg}}
-          </div>
+        
 
+<<<<<<< HEAD
           <hr>
           
+=======
+      
+>>>>>>> 570681a2e71e2850511b9dc56f28d11bbb9c9834
        
       </div>
       <div *ngIf="popUpMsg!=null" class="alert alert-success" role="alert">
         {{popUpMsg}}
       </div>
+      
         </div>
 
     </div>
@@ -145,11 +154,22 @@
             </label>
             
           </div>
+<<<<<<< HEAD
           <hr>
           <button type="submit" [disabled]="moduleForms.form.invalid" class="btn btn-primary"  >Update</button>
           
           <button type="button" (click)=closeModal() class="btn btn-secondary float-right" data-dismiss="modal">Close</button>
+=======
+         
+          <div class="">
+            <button type="submit" class="btn btn-primary"  >Update</button>
+>>>>>>> 570681a2e71e2850511b9dc56f28d11bbb9c9834
           
+            <button type="button" (click)=closeModal() class="btn btn-secondary float-right" data-dismiss="modal">Close</button>
+            
+          </div>
+
+        
         </form>
       </div>
       <div *ngIf="popUpMsg!=null" class="alert alert-success" role="alert">

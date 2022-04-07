@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { registerModuleFactory } from '@angular/core/src/linker/ng_module_factory_loader';
 import { Company } from '../dto/company';
@@ -34,6 +35,7 @@ export class CompanyComponent implements OnInit {
     );
     
   }
+  ErrorMsg : Company ;
   createCompany(){
     console.log(this.newCompany);
     this.configService.createCompany(this.newCompany).subscribe(
@@ -45,7 +47,9 @@ export class CompanyComponent implements OnInit {
       },
       error=>{
         this.popUpMsg = "Unable to create Company";
-
+        let errorMsg = new HttpErrorResponse(error);
+        this.ErrorMsg = errorMsg.error;
+        alert(this.ErrorMsg.companyName+". "+this.ErrorMsg.companyUser)
       }   
       
       

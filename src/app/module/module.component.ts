@@ -12,7 +12,7 @@ export class ModuleComponent implements OnInit {
 
   moduleData : Module [] = []
   newModule : Module = new Module (0,1,"","",false,"",0);
-  
+  searchBox : string ; 
   popUpMsg =null;
   searchText : string ="";
   constructor(private configService : ConfiguationService) { }
