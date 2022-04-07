@@ -83,8 +83,8 @@
 
               <div class="form-group">
                 <label for="inputModuleDes">Module description</label>
-                <input type="text" #modulDesc="ngModel"  [(ngModel)]="newModule.moduleDesc" required name="inputModuleDes" class="form-control mb-1" id="inputModuleDes" placeholder="Description">
-                <small *ngIf="modulDesc.invalid&&modulDesc.touched" class="alert alert-danger d-block">
+                <input type="text" #modulDescs="ngModel"  [(ngModel)]="newModule.moduleDesc" required name="inputModuleDes" class="form-control mb-1" id="inputModuleDes" placeholder="Description">
+                <small *ngIf="modulDescs.invalid&&modulDescs.touched" class="alert alert-danger d-block">
                   Field is required</small>
               </div>
               
@@ -130,7 +130,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form #moduleForm="ngForm" (ngSubmit)="updateModule()">
+        <form #moduleForms="ngForm" (ngSubmit)="updateModule()">
 
           <div class="form-group">
             <label for="inputModuleDes">Module description</label>
@@ -146,7 +146,7 @@
             
           </div>
           <hr>
-          <button type="submit" [disabled]="moduleForm.form.invalid" class="btn btn-primary"  >Update</button>
+          <button type="submit" [disabled]="moduleForms.form.invalid" class="btn btn-primary"  >Update</button>
           
           <button type="button" (click)=closeModal() class="btn btn-secondary float-right" data-dismiss="modal">Close</button>
           
