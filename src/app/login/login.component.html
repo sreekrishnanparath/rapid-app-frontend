@@ -6,17 +6,19 @@
         <h4 class="col-12 lead">Login if you are an existing customer</h4>
         <div class="col-md-6 mt-5">
            
-            <form  (ngSubmit)="doLogin()" ngNativeValidate>
+            <form  (ngSubmit)="doLogin()" ngNativeValidate #userForm="ngForm">
                 <div class="form-group">
                   <label for="email" class="small">Email address:</label>
-                  <input type="email" [(ngModel)]="user.userEmail" required class="form-control rounded-0" name="email" placeholder="Enter email" id="email">
+                  <input type="email" #userEmail="ngModel" [(ngModel)]="user.userEmail" required class="form-control mb-1 rounded-0" name="email" placeholder="Enter email" id="email">
+                  <small *ngIf="userEmail.invalid&&userEmail.touched" class="alert alert-danger  d-block">Field is required</small>
                 </div>
                 <div class="form-group">
                   <label for="pwd" class="small">Password:</label>
-                  <input type="password" [(ngModel)]="user.password" required class="form-control rounded-0" name="password" placeholder="Enter password" id="pwd">
+                  <input type="password" #password="ngModel" [(ngModel)]="user.password" required class="form-control mb-2 rounded-0" name="password" placeholder="Enter password" id="pwd">
+                  <small *ngIf="password.invalid&&password.touched" class="alert alert-danger d-block">Field is required</small>
                 </div>
                 
-                <button type="submit" class="btn col-12 rounded-0 py-2 btn-primary"> Sign In</button>
+                <button type="submit" [disabled]="userForm.form.invalid" class="btn col-12 rounded-0 py-2 btn-dark"> Sign In</button>
               </form>
               
         </div>

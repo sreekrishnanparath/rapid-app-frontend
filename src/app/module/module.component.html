@@ -83,8 +83,11 @@
 
               <div class="form-group">
                 <label for="inputModuleDes">Module description</label>
-                <input type="text"  [(ngModel)]="newModule.moduleDesc" required name="inputModuleDes" class="form-control" id="inputModuleDes" placeholder="Description">
+                <input type="text" #modulDesc="ngModel"  [(ngModel)]="newModule.moduleDesc" required name="inputModuleDes" class="form-control mb-1" id="inputModuleDes" placeholder="Description">
+                <small *ngIf="modulDesc.invalid&&modulDesc.touched" class="alert alert-danger d-block">
+                  Field is required</small>
               </div>
+              
               <div class="form-check">
                 <input class="form-check-input" [(ngModel)]="newModule.isActive" required type="checkbox" value="" name="inputModuleIsActive" id="inputModuleIsActive" checked>
                 <label class="form-check-label" for="inputModuleIsActive">
@@ -93,7 +96,7 @@
                 
               </div>
               <hr>
-              <button type="submit" class="btn btn-primary"  >Create</button>
+              <button type="submit" class="btn btn-primary" [disabled]="moduleForm.form.invalid"  >Create</button>
               
               <button type="button" class="btn btn-secondary float-right" (click)="resetPopUpMsg()" data-dismiss="modal">Close</button>
               
@@ -104,9 +107,7 @@
           </div>
 
           <hr>
-          <button type="submit" class="btn btn-primary"  >Create</button>
           
-          <button type="button" (click)=closeModal() class="btn btn-secondary float-right" data-dismiss="modal">Close</button>
        
       </div>
       <div *ngIf="popUpMsg!=null" class="alert alert-success" role="alert">
@@ -133,7 +134,9 @@
 
           <div class="form-group">
             <label for="inputModuleDes">Module description</label>
-            <input type="text"  [(ngModel)]="newModule.moduleDesc" required name="inputModuleDes" class="form-control" id="inputModuleDes" placeholder="Description">
+            <input type="text" #modulDesc="ngModel"  [(ngModel)]="newModule.moduleDesc" required name="inputModuleDes" class="form-control mb-1" id="inputModuleDes" placeholder="Description">
+            <small *ngIf="modulDesc.invalid&&modulDesc.touched" class="alert alert-danger d-block">
+              Field is required</small>
           </div>
           <div class="form-check">
             <input class="form-check-input" [(ngModel)]="newModule.isActive" required type="checkbox" value="" name="inputModuleIsActive" id="inputModuleIsActive" checked>
@@ -143,7 +146,7 @@
             
           </div>
           <hr>
-          <button type="submit" class="btn btn-primary"  >Update</button>
+          <button type="submit" [disabled]="moduleForm.form.invalid" class="btn btn-primary"  >Update</button>
           
           <button type="button" (click)=closeModal() class="btn btn-secondary float-right" data-dismiss="modal">Close</button>
           
