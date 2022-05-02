@@ -22,6 +22,7 @@ export class AttributeMasterComponent implements OnInit {
   showBtn = false;
   singleModule:number;
   public dropDown = false;
+  public showInput=true;
   public display = true;
   public lookUpRef: string[];
   public className="customBg"
@@ -43,22 +44,27 @@ export class AttributeMasterComponent implements OnInit {
     );
   }
   selectAtrribute(attr: string) {
+  
     if (attr === "5") {
+      this.showInput=false;
+      this.showBtn = false;
       this.dropDown = true;
       this.configService.getLookUpRef().subscribe(
         response => {
           this.lookUpRef = response
         }
       );
-    } else {
+    } else if(attr === "2"||attr === "6"||attr === "4") {
       this.dropDown = false;
+      this.showBtn = true;
+      this.showInput=false;
+    }else if(attr === "1"||attr === "3"){
+      this.dropDown = false;
+      this.showBtn = false;
+      this.showInput=true;
     }
 
-    if (attr === "2") {
-      this.showBtn = true;
-    } else {
-      this.showBtn = false;
-    }
+   
   }
   getModuleAttributes(moduleMasterId: number) {
 
@@ -117,8 +123,9 @@ export class AttributeMasterComponent implements OnInit {
   }
 
   showUpdate(attribute: Attribute) {
-    
+    this.selectAtrribute(attribute.inputControlType.toString());
     this.attributeForm = attribute;
+    console.log(attribute)
     this.configService.getLookUpRef().subscribe(
       response => {
         this.lookUpRef = response
