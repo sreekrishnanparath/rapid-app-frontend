@@ -77,7 +77,6 @@ export class CompanyComponent implements OnInit {
   }
   updateDetails(company:Company)
   {
-    console.log(company);
     this.newCompany = company;
   }
   updateCompany(company : Company)
