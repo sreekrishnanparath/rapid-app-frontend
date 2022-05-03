@@ -34,7 +34,7 @@ export class LookupComponent implements OnInit {
   showUpdate(lookup: Lookup){
     this.newLookup = lookup;
   }
-  
+
   closeModal(){
     this.newLookup = new Lookup (0,1,"","","created",false);
   }
@@ -65,6 +65,7 @@ export class LookupComponent implements OnInit {
       success=>{
         this.popUpMsg = "Lookup Created";
         this.refreshTasks();
+        this.getLookupRefIds();
         
       },
       error=>{

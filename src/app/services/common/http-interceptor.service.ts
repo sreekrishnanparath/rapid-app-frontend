@@ -10,7 +10,7 @@ export class HttpInterceptorService implements HttpInterceptor {
   constructor() { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const BASE_URL = 'http://localhost:8082/rapidapp';
+    const BASE_URL = 'http://localhost:53342/rapidapp';
     req = req.clone({ url: BASE_URL+req.url });
 
     if (req.url.includes('login')) {
